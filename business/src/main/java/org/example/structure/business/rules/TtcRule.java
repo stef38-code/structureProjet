@@ -1,4 +1,4 @@
-package org.model.projet.business.rules;
+package org.example.structure.business.rules;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

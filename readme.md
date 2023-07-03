@@ -33,16 +33,17 @@ La logique que vous implémentez doit :
 Pour le développement d'une application avec clean architecture, 
 il faut respecter plusieurs règles.
 Ces règles seront en partie contrôlées par la librairie [ArchUnit](https://www.archunit.org/userguide/html/000_Index.html) 
- Ce qui explique la présence du module `Archeteture`
+ Ce qui explique la présence du module `Architecture`
 
-Le module Business doit-être complétement autonome [contrôle](architecture/src/test/java/org/model/projet/architecture/ControleArchitectureBusinessTest.java)
+Le module Business doit-être complétement autonome [contrôle](architecture/src/test/java/org/example/structure/architecture/ControleArchitectureBusinessTest.java#L15)
 
 
 
 ## Case d'usage :
 ### Création
 La création d'un usage commence si possible de l'ajout d'un nouveau test dans le module `Business`
-#### Nouveau usage
+#### Nouvel usage 
+Ajout de la classe `business` dans le package `org.example.structure.business`, elle doit obligatoirement implémenter une interface du package `org.example.structure.business.adapters.in`
 
 ### Appel
 # Ressources
