@@ -50,18 +50,21 @@ Calcule du prix TTc depuis un prix HTc et une TVA
 Ajout de la classe `business` dans le package `org.example.structure.business`, elle doit obligatoirement implémenter une interface du package `org.example.structure.business.adapters.in`
 Il peut utiliser des régles de gestion contenue dans le package `org.example.structure.rules`
 
-```mermaid
-classDiagram
-direction BT
-class CalculPrixTtc {
-<<Interface>>
+```plantuml
+@startuml
 
-}
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+interface CalculPrixTtc << interface >>
 class CalculPrixTtcDefault {
-  + CalculPrixTtcDefault() 
+  + CalculPrixTtcDefault(): 
 }
 
-CalculPrixTtcDefault  ..>  CalculPrixTtc 
+CalculPrixTtcDefault  -[#008200,dashed]-^  CalculPrixTtc        
+@enduml
+
 ```
 Code :
 ```java
