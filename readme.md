@@ -16,6 +16,9 @@ La logique que vous implémentez doit :
 * Application : la partie des appels extérieurs
 * Business : La partie métier
 * Infrastructure : la partie de communication avec les infrastructures de l'entreprise
+# Mise en place
+* création d'un repository git
+* copier le projet exemple dans un repertoire local
 
 # Description des packages pour chaques modules
 
@@ -35,15 +38,75 @@ il faut respecter plusieurs règles.
 Ces règles seront en partie contrôlées par la librairie [ArchUnit](https://www.archunit.org/userguide/html/000_Index.html) 
  Ce qui explique la présence du module `Architecture`
 
-Le module Business doit-être complétement autonome [contrôle](architecture/src/test/java/org/example/structure/architecture/ControleArchitectureBusinessTest.java#L15)
-
+Le module Business doit-être complétement autonome [contrôle](architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java)
 
 
 ## Case d'usage :
-### Création
-La création d'un usage commence si possible de l'ajout d'un nouveau test dans le module `Business`
-#### Nouvel usage 
+### Création : Nouvel usage sans interaction avec `Infrastrcuture`
+
+Calcule du prix TTc depuis un prix HTc et une TVA
+
+#### Partie `Business`
 Ajout de la classe `business` dans le package `org.example.structure.business`, elle doit obligatoirement implémenter une interface du package `org.example.structure.business.adapters.in`
+Il peut utiliser des régles de gestion contenue dans le package `org.example.structure.rules`
+
+```mermaid
+classDiagram
+direction BT
+class CalculPrixTtc {
+<<Interface>>
+
+}
+class CalculPrixTtcDefault {
+  + CalculPrixTtcDefault() 
+}
+
+CalculPrixTtcDefault  ..>  CalculPrixTtc 
+```
+Code :
+```java
+package org.example.structure.business.services;
+
+import org.example.structure.business.rules.TtcRule;
+import org.example.structure.business.adapters.in.CalculPrixTtc;
+
+public class CalculPrixTtcDefault implements CalculPrixTtc {
+    @Override
+    public double apply(double prixHtc, int taux) {
+        TtcRule ttcRule = new TtcRule();
+        return ttcRule.calcule(prixHtc, taux);
+    }
+}
+```
+Test
+```java
+package org.example.structure.business.services;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class CalculPrixTtcDefaultTest {
+    /**
+     * Method under test: {@link CalculPrixTtcDefault#apply(double, int)}
+     */
+    @Test
+    void apply() {
+        assertThat((new CalculPrixTtcDefault()).apply(5.0d, 0)).isEqualTo(5.0d);
+        assertThat((new CalculPrixTtcDefault()).apply(5.0d, 100)).isEqualTo(10.0d);
+        assertThat((new CalculPrixTtcDefault()).apply(5.0d, 75)).isEqualTo(8.75d);
+        assertThat((new CalculPrixTtcDefault()).apply(5.0d, 50)).isEqualTo(7.50d);
+        assertThat((new CalculPrixTtcDefault()).apply(5.0d, 25)).isEqualTo(6.25d);
+        assertThat((new CalculPrixTtcDefault()).apply(10.5d, 15)).isEqualTo(12.075d);
+        assertThat((new CalculPrixTtcDefault()).apply(0.0d, 1)).isEqualTo(0.0d);
+        assertThat((new CalculPrixTtcDefault()).apply(-0.5d, 1)).isEqualTo(0.0d);
+    }
+}
+```
+#### Partie `Application`
+
+
+
 
 ### Appel
 # Ressources

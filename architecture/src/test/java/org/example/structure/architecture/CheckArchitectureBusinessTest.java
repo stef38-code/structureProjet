@@ -18,6 +18,7 @@ class CheckArchitectureBusinessTest {
             .importPackages("org.example.structure");*/
     JavaClasses importedClasses = new ClassFileImporter()
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
+            .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_JARS)
             .importPath(Paths.get(".."));
 
     @Test
@@ -50,5 +51,14 @@ class CheckArchitectureBusinessTest {
                 .because("Cette classe n'implémente pas une interface contenue dans le package adapters.in");
         rule.check(importedClasses);
     }
+    //todo ajout la régles : les regles de gestion ne peut être utilisées que dans les classes contenues dans ..business.services
+    @Test
+    void test(){
+        ArchRule rule = classes().that().resideInAPackage("..business.rules").should()
+                .onlyBeAccessed()
+                .byClassesThat()
+                .resideInAPackage("..business.services");
 
+        rule.check(importedClasses);
+    }
 }
