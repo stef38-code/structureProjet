@@ -16,7 +16,9 @@ La logique que vous implémentez doit :
 * Application : la partie des appels extérieurs
 * Business : La partie métier
 * Infrastructure : la partie de communication avec les infrastructures de l'entreprise
+
 # Mise en place
+
 * création d'un repository git
 * copier le projet exemple dans un repertoire local
 
@@ -38,10 +40,44 @@ il faut respecter plusieurs règles.
 Ces règles seront en partie contrôlées par la librairie [ArchUnit](https://www.archunit.org/userguide/html/000_Index.html) 
  Ce qui explique la présence du module `Architecture`
 
-Le module Business doit-être complétement autonome [contrôle](architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java)
+1. Le module **Business** doit-être complétement autonome [contrôle](architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java)
+```mermaid
 
+
+```
+3. Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes :
+   * implementer une interface du module **Business** du package `adapters.out`
+   * avec les models module **Business**
+3. Le module **Application** aura les dépendences suivantes
+   * module **Business** :
+     * les models
+     * les interfaces `adapters.out` et `adapters.in`
+     * les services
+   * module **Infrastructure** :
+     * Les services
 
 ## Case d'usage :
+
+Le sujet sera un magasin, les points qui seront abordés :
+
+> La liste ci-dessous sera amener à évoluer
+
+* les bornes d'information : passage du code pour avoir 
+  * le prix du produit Ttc
+  * le nom
+
+* sans doute le plus important le passage en caisse :
+  * passage du produit :
+    * le nom, le prix Ttc
+    * Ajout dans la liste des produits déjà passés
+    * Suppression d'un article de la liste des produits
+    * liste des produits avec le detail
+      * nombre d'articles , le montant total Ttc
+      * la liste des articles : code produit, nom, prix Ttc
+
+
+
+
 ### Création : Nouvel usage sans interaction avec `Infrastrcuture`
 
 Calcule du prix TTc depuis un prix HTc et une TVA
