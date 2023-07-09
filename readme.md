@@ -41,11 +41,27 @@ Ces règles seront en partie contrôlées par la librairie [ArchUnit](https://ww
  Ce qui explique la présence du module `Architecture`
 
 1. Le module **Business** doit-être complétement autonome [contrôle](architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java)
-```mermaid
+```plantuml
 
+@startuml
+'
+package projet.business #GreenYellow/LightGoldenRodYellow {
+
+}
+package projet.application #DDDDDD {
+
+}
+package projet.infrastructure #DDDDDD {
+
+}
+projet.business -[#red]-> projet.application  
+projet.business -[#red]-> projet.infrastructure  
+projet.business -[#red]-> projet.infrastructure : zzz destroy 'projet.infrastructure'  
+
+@enduml
 
 ```
-3. Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes :
+2. Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes :
    * implementer une interface du module **Business** du package `adapters.out`
    * avec les models module **Business**
 3. Le module **Application** aura les dépendences suivantes
