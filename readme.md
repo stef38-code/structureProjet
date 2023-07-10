@@ -25,6 +25,11 @@ La logique que vous implémentez doit :
 # Description des packages pour chaques modules
 
 ## Business
+### Les règles
+
+>Le module **Business** doit-être complétement autonome [contrôle](architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java)
+
+### Packages
 
 |   Package    |      implèmentation      | Description                                                        |
 |:------------:|:------------------------:|:-------------------------------------------------------------------|
@@ -34,13 +39,7 @@ La logique que vous implémentez doit :
 | adapters.in  |                          | Interfaces pour les cases d'usages                                 |
 | adapters.out |                          | Interfaces pour le module `infrastructure`                          |
 
-# Le Développement
-Pour le développement d'une application avec clean architecture, 
-il faut respecter plusieurs règles.
-Ces règles seront en partie contrôlées par la librairie [ArchUnit](https://www.archunit.org/userguide/html/000_Index.html) 
- Ce qui explique la présence du module `Architecture`
-
-1. Le module **Business** doit-être complétement autonome [contrôle](architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java)
+### Schema
 ```plantuml
 
 @startuml
@@ -48,22 +47,78 @@ Ces règles seront en partie contrôlées par la librairie [ArchUnit](https://ww
 package projet.business #GreenYellow/LightGoldenRodYellow {
 
 }
-package projet.application #DDDDDD {
+package projet.application #2C6E2E {
 
 }
-package projet.infrastructure #DDDDDD {
+package projet.infrastructure #4C799C {
 
 }
-projet.business -[#red]-> projet.application  
-projet.business -[#red]-> projet.infrastructure  
-projet.business -[#red]-> projet.infrastructure : zzz destroy 'projet.infrastructure'  
-
+projet.business -[#red]-+ projet.application  
+projet.business -[#red]-+ projet.infrastructure  
 @enduml
 
 ```
-2. Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes :
-   * implementer une interface du module **Business** du package `adapters.out`
-   * avec les models module **Business**
+## Infrastructure
+### Les règles
+
+>Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes :
+>* implementer une interface du module **Business** du package `adapters.out`
+>* avec les models module **Business**
+
+### Packages
+
+|   Package    |      implèmentation      | Description                                                        |
+|:------------:|:------------------------:|:-------------------------------------------------------------------|
+|   services   |  interface adapters.in   | Contient les cases d'usages                                        |
+|    rules     |                          | Ensemble de régles qui seront utilisées uniquement dans `services` |
+|    models    |                          | Les classes de données                                             |
+| adapters.in  |                          | Interfaces pour les cases d'usages                                 |
+| adapters.out |                          | Interfaces pour le module `infrastructure`                          |
+
+### Schema
+```plantuml
+@startuml
+'
+package projet.business #GreenYellow/LightGoldenRodYellow {
+
+}
+package projet.application #2C6E2E {
+
+}
+package projet.infrastructure #4C799C {
+
+}
+projet.infrastructure -[#red]-+ projet.application  
+projet.infrastructure -[#red]-> projet.business  
+@enduml
+```
+## Application
+### Les règles
+
+>
+
+### Packages
+
+|   Package    |      implèmentation      | Description                                                        |
+|:------------:|:------------------------:|:-------------------------------------------------------------------|
+|   services   |  interface adapters.in   | Contient les cases d'usages                                        |
+|    rules     |                          | Ensemble de régles qui seront utilisées uniquement dans `services` |
+|    models    |                          | Les classes de données                                             |
+| adapters.in  |                          | Interfaces pour les cases d'usages                                 |
+| adapters.out |                          | Interfaces pour le module `infrastructure`                          |
+
+### Schema
+```plantuml
+```
+
+# Le Développement
+Pour le développement d'une application avec clean architecture, 
+il faut respecter plusieurs règles.
+Ces règles seront en partie contrôlées par la librairie [ArchUnit](https://www.archunit.org/userguide/html/000_Index.html) 
+ Ce qui explique la présence du module `Architecture`
+
+
+2. 
 3. Le module **Application** aura les dépendences suivantes
    * module **Business** :
      * les models
