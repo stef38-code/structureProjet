@@ -43,7 +43,7 @@ La logique que vous implémentez doit :
 ```plantuml
 
 @startuml
-'
+
 package projet.business #GreenYellow/LightGoldenRodYellow {
 
 }
@@ -78,7 +78,7 @@ projet.business -[#red]-+ projet.infrastructure
 ### Schema
 ```plantuml
 @startuml
-'
+
 package projet.business #GreenYellow/LightGoldenRodYellow {
 
 }
