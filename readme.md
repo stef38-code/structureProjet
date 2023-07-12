@@ -41,7 +41,6 @@ La logique que vous implémentez doit :
 
 ### Schema
 ```plantuml
-
 @startuml
 
 package projet.business #GreenYellow/LightGoldenRodYellow {
@@ -53,10 +52,9 @@ package projet.application #2C6E2E {
 package projet.infrastructure #4C799C {
 
 }
-projet.business -[#red]-+ projet.application  
-projet.business -[#red]-+ projet.infrastructure  
+projet.business -[#red]-+ projet.application  : non autorisé
+projet.business -[#red]-+ projet.infrastructure  : non autorisé
 @enduml
-
 ```
 ## Infrastructure
 ### Les règles
@@ -65,22 +63,12 @@ projet.business -[#red]-+ projet.infrastructure
 >* implementer une interface du module **Business** du package `adapters.out`
 >* avec les models module **Business**
 
-### Packages
-
-|   Package    |      implèmentation      | Description                                                        |
-|:------------:|:------------------------:|:-------------------------------------------------------------------|
-|   services   |  interface adapters.in   | Contient les cases d'usages                                        |
-|    rules     |                          | Ensemble de régles qui seront utilisées uniquement dans `services` |
-|    models    |                          | Les classes de données                                             |
-| adapters.in  |                          | Interfaces pour les cases d'usages                                 |
-| adapters.out |                          | Interfaces pour le module `infrastructure`                          |
-
-### Schema
 ```plantuml
 @startuml
 
 package projet.business #GreenYellow/LightGoldenRodYellow {
-
+package projet.business.adapter.out
+package projet.business.models
 }
 package projet.application #2C6E2E {
 
@@ -88,10 +76,109 @@ package projet.application #2C6E2E {
 package projet.infrastructure #4C799C {
 
 }
-projet.infrastructure -[#red]-+ projet.application  
-projet.infrastructure -[#red]-> projet.business  
+projet.infrastructure -[#red]-+ projet.application  : non autorisé
+projet.infrastructure -[#red]-> projet.business.adapter.out  
+projet.infrastructure -[#red]-> projet.business.models  
 @enduml
 ```
+### Packages
+
+|       Package       |     implèmentation     | Description                                           |
+|:-------------------:|:----------------------:|:------------------------------------------------------|
+|      services       | interface adapters.out | Usages définis dans le module **Business**            |
+|     repository      |                        | Les appels DB                                         |
+| repository.entities |                        | Les classes de données pour la DB                     |
+|  repository.mapper  |                        | Convertisseurs entities/DB -> model de **business**   |
+|        soap         |                        | Les appels en SOAP                                    |
+|    soap.entities    |                        | Les classes de données pour les appels en SOAP        |
+|     soap.mapper     |                        | Convertisseurs entities/SOAP -> model de **business** |
+|        rest         |                        | Les appels REST                                       |
+|    rest.entities    |                        | Les classes de données pour les appels en REST        |
+|     rest.mapper     |                        | Convertisseurs entities/REST -> model de **business** |
+
+Exemple :
+```plantuml
+@startuml
+
+package projet.business #GreenYellow/LightGoldenRodYellow {
+  package projet.business.adapter.out {
+  interface RestPersonneOut {
+    Personne findById(id String)
+  }
+  }
+  package projet.business.adapter.models {
+    class Personne{
+    }
+  }
+}
+package projet.infrastructure #4C799C {
+  package projet.infrastructure.services {
+    class RestPersonneServiceDefault implements RestPersonneOut {
+    + {method} Personne findById(id String)
+    }
+  }
+  package projet.infrastructure.rest {
+    class RestPersonne{
+        + RestPersonneEntity findById(Id String)
+    }
+  }
+  package projet.infrastructure.rest.entities {
+    class RestPersonneEntity
+  }
+  package projet.infrastructure.rest.mapper {
+    class RestPersonneMapper{
+        + Personne to(RestPersonneEntity restPersonneEntity)
+        + RestPersonneEntity to(Personne personne)
+    }
+  }
+}
+@enduml
+```
+```plantuml
+@startuml
+
+participant RestPersonneServiceDefault [
+    =RestPersonneServiceDefault
+    ----
+    ""Personne findById(id String)""
+]
+participant RestPersonneMapperEntitie [
+    =RestPersonneMapper
+    ----
+    ""RestPersonneEntity to(Personne personne)""
+]
+participant RestPersonneMapperModel [
+    =RestPersonneMapper
+    ----
+    ""Personne to(RestPersonneEntity restPersonneEntity)""
+]
+participant RestPersonne [
+    =RestPersonne
+    ----
+    ""RestPersonneEntity findById(Id String)""
+]
+
+
+  activate RestPersonneServiceDefault
+  RestPersonneServiceDefault -> RestPersonneMapperEntitie  : conversion classes données
+  activate RestPersonneMapperEntitie
+  RestPersonneMapperEntitie -> RestPersonneServiceDefault
+  deactivate RestPersonneMapperEntitie
+  RestPersonneServiceDefault -> RestPersonne : Appel du service rest dans le réseau 
+  activate RestPersonne
+  RestPersonne -> RestPersonneServiceDefault : 
+  deactivate RestPersonne
+  RestPersonneServiceDefault -> RestPersonneMapperModel : conversion classes données
+  activate RestPersonneMapperModel
+  RestPersonneMapperModel -> RestPersonneServiceDefault
+  deactivate RestPersonneMapperModel
+  deactivate RestPersonneServiceDefault
+@enduml
+```
+
+### Schema
+
+
 ## Application
 ### Les règles
 
