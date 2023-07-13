@@ -1,5 +1,5 @@
 # Clean Architecture
-![img.png](img.png)
+![img.png](images/clean_architecture.png)
 # Les bases de cette architecture
 La logique que vous implémentez doit :
 
@@ -40,28 +40,7 @@ La logique que vous implémentez doit :
 | adapters.out |                          | Interfaces pour le module `infrastructure`                          |
 
 ### Schema
-```plantuml
-@startuml
-
-package projet.business #GreenYellow/LightGoldenRodYellow {
-
-}
-package projet.application #2C6E2E {
-
-}
-package projet.infrastructure #4C799C {
-
-}
-projet.business -[#red]-+ projet.application
-projet.business -[#red]-+ projet.infrastructure
-note top of projet.application
-Utilisation non autorisée
-end note
-note top of projet.infrastructure
-Utilisation non autorisée
-end note
-@enduml
-```
+![](./images/dia_dep-diagramme%20des%20dépendences.png)
 ## Infrastructure
 ### Les règles
 
@@ -69,27 +48,7 @@ end note
 >* implementer une interface du module **Business** du package `adapters.out`
 >* avec les models module **Business**
 
-```plantuml
-@startuml
-
-package projet.business #GreenYellow/LightGoldenRodYellow {
-package projet.business.adapter.out 
-package projet.business.models
-}
-package projet.application #2C6E2E {
-
-}
-package projet.infrastructure #4C799C {
-
-}
-projet.infrastructure -[#red]-> projet.business.adapter.out  
-projet.infrastructure -[#red]-> projet.business.models  
-projet.infrastructure -[#red]-+ projet.application  
-note top of projet.application
-Utilisation non autorisée
-end note
-@enduml
-```
+![](./images/dia_business-0.png)
 ### Packages
 
 |       Package       |     implèmentation     | Description                                           |
@@ -109,72 +68,9 @@ Exemple :
 Nous devons développer un service REST qui doit interroger un service du réseau interne
 afin de rechercher une personne depuis son id.
 Voici la définition des différents éléments dans les modules **business** et **infrastructure**
-```plantuml
-@startuml
-package projet.business #GreenYellow/LightGoldenRodYellow {
-  package projet.business.adapter.out {
-  interface RestPersonneOut {
-    Personne findById(id String)
-  }
-  }
-  package projet.business.adapter.models {
-    class Personne{
-    }
-  }
-}
-package projet.infrastructure #4C799C {
-  package projet.infrastructure.services {
-    class RestPersonneServiceDefault implements RestPersonneOut {
-    + {method} Personne findById(id String)
-    }
-  }
-  package projet.infrastructure.rest {
-    class RestPersonne{
-        + RestPersonneEntity findById(Id String)
-    }
-  }
-  package projet.infrastructure.rest.entities {
-    class RestPersonneEntity
-  }
-  package projet.infrastructure.rest.mapper {
-    class RestPersonneMapper{
-        + Personne to(RestPersonneEntity restPersonneEntity)
-        + RestPersonneEntity to(Personne personne)
-    }
-  }
-}
-@enduml
-```
+![](./images/dia_business_ex.png)
 Le déroulement des différents appels sont sous la forme suivante :
-```plantuml
-@startuml
-skinparam style strictuml
-skinparam sequenceMessageAlign center
-participant RestPersonneServiceDefault [
-    =RestPersonneServiceDefault
-    ----
-    ""Personne findById(id String)""
-]
-participant RestPersonneMapperModel [
-    =RestPersonneMapper
-    ----
-    ""Personne to(RestPersonneEntity restPersonneEntity)""
-]
-participant RestPersonne [
-    =RestPersonne
-    ----
-    ""RestPersonneEntity findById(Id String)""
-]
-
-
-[-> RestPersonneServiceDefault ++ : Cas usage
-RestPersonneServiceDefault -> RestPersonne --++: Appel du service rest dans le réseau 
-RestPersonne -> RestPersonneServiceDefault --++: 
-RestPersonneServiceDefault -> RestPersonneMapperModel --++: conversion classes données
-RestPersonneMapperModel -> RestPersonneServiceDefault --++
-[<- RestPersonneServiceDefault -- : retourne une personne
-@enduml
-```
+![](./images/dia_seq_business_ex.png)
 
 
 
@@ -284,7 +180,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CalculPrixTtcDefaultTest {
     /**
-     * Method under test: {@link CalculPrixTtcDefault#apply(double, int)}
+     * Method under test: {@link  org.example.structure.business.services.CalculPrixTtcDefault#apply(double, int)}
      */
     @Test
     void apply() {
