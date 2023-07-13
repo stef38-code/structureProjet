@@ -52,8 +52,14 @@ package projet.application #2C6E2E {
 package projet.infrastructure #4C799C {
 
 }
-projet.business -[#red]-+ projet.application  : non autorisé
-projet.business -[#red]-+ projet.infrastructure  : non autorisé
+projet.business -[#red]-+ projet.application
+projet.business -[#red]-+ projet.infrastructure
+note top of projet.application
+Utilisation non autorisée
+end note
+note top of projet.infrastructure
+Utilisation non autorisée
+end note
 @enduml
 ```
 ## Infrastructure
@@ -67,7 +73,7 @@ projet.business -[#red]-+ projet.infrastructure  : non autorisé
 @startuml
 
 package projet.business #GreenYellow/LightGoldenRodYellow {
-package projet.business.adapter.out
+package projet.business.adapter.out 
 package projet.business.models
 }
 package projet.application #2C6E2E {
@@ -76,9 +82,12 @@ package projet.application #2C6E2E {
 package projet.infrastructure #4C799C {
 
 }
-projet.infrastructure -[#red]-+ projet.application  : non autorisé
 projet.infrastructure -[#red]-> projet.business.adapter.out  
 projet.infrastructure -[#red]-> projet.business.models  
+projet.infrastructure -[#red]-+ projet.application  
+note top of projet.application
+Utilisation non autorisée
+end note
 @enduml
 ```
 ### Packages
@@ -97,9 +106,11 @@ projet.infrastructure -[#red]-> projet.business.models
 |     rest.mapper     |                        | Convertisseurs entities/REST -> model de **business** |
 
 Exemple :
+Nous devons développer un service REST qui doit interroger un service du réseau interne
+afin de rechercher une personne depuis son id.
+Voici la définition des différents éléments dans les modules **business** et **infrastructure**
 ```plantuml
 @startuml
-
 package projet.business #GreenYellow/LightGoldenRodYellow {
   package projet.business.adapter.out {
   interface RestPersonneOut {
@@ -134,18 +145,15 @@ package projet.infrastructure #4C799C {
 }
 @enduml
 ```
+Le déroulement des différents appels sont sous la forme suivante :
 ```plantuml
 @startuml
-
+skinparam style strictuml
+skinparam sequenceMessageAlign center
 participant RestPersonneServiceDefault [
     =RestPersonneServiceDefault
     ----
     ""Personne findById(id String)""
-]
-participant RestPersonneMapperEntitie [
-    =RestPersonneMapper
-    ----
-    ""RestPersonneEntity to(Personne personne)""
 ]
 participant RestPersonneMapperModel [
     =RestPersonneMapper
@@ -159,24 +167,15 @@ participant RestPersonne [
 ]
 
 
-  activate RestPersonneServiceDefault
-  RestPersonneServiceDefault -> RestPersonneMapperEntitie  : conversion classes données
-  activate RestPersonneMapperEntitie
-  RestPersonneMapperEntitie -> RestPersonneServiceDefault
-  deactivate RestPersonneMapperEntitie
-  RestPersonneServiceDefault -> RestPersonne : Appel du service rest dans le réseau 
-  activate RestPersonne
-  RestPersonne -> RestPersonneServiceDefault : 
-  deactivate RestPersonne
-  RestPersonneServiceDefault -> RestPersonneMapperModel : conversion classes données
-  activate RestPersonneMapperModel
-  RestPersonneMapperModel -> RestPersonneServiceDefault
-  deactivate RestPersonneMapperModel
-  deactivate RestPersonneServiceDefault
+[-> RestPersonneServiceDefault ++ : Cas usage
+RestPersonneServiceDefault -> RestPersonne --++: Appel du service rest dans le réseau 
+RestPersonne -> RestPersonneServiceDefault --++: 
+RestPersonneServiceDefault -> RestPersonneMapperModel --++: conversion classes données
+RestPersonneMapperModel -> RestPersonneServiceDefault --++
+[<- RestPersonneServiceDefault -- : retourne une personne
 @enduml
 ```
 
-### Schema
 
 
 ## Application
