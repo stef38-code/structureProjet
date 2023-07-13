@@ -12,7 +12,7 @@ package projet.business #GreenYellow/LightGoldenRodYellow {
 }
 package projet.infrastructure #4C799C {
   package projet.infrastructure.services {
-    class RestPersonneServiceDefault implements RestPersonneOut {
+    class RestPersonneServiceDefault implements projet.business.adapter.out.RestPersonneOut {
     + {method} Personne findById(id String)
     }
   }
