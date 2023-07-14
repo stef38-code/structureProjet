@@ -13,11 +13,11 @@ La logique que vous implémentez doit :
 
 == Définition de la structure du projet
 
-.Bulleted
-* Application : la partie des appels extérieurs
-* Business : La partie métier
-* Infrastructure : la partie de communication avec les infrastructures de l'entreprise
-* Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet
+.Steps
+. Application : la partie des appels extérieurs
+. Business : La partie métier
+. Infrastructure : la partie de communication avec les infrastructures de l'entreprise
+. Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet
 
 include::./doc/mise_en_place.adoc[]
 
