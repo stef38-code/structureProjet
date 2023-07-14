@@ -24,8 +24,11 @@ include::./doc/mise_en_place.adoc[]
 == Description des packages pour chaques modules
 
 include::doc/desc_module_business.adoc[]
+
 include::doc/desc_module_infra.adoc[]
+
 include::doc/desc_module_appli.adoc[]
+
 
 == Le Développement
 Pour le développement d'une application avec clean architecture,
