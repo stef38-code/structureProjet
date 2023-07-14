@@ -1,0 +1,24 @@
+= Clean Architecture
+
+image::./images/clean_architecture.png[]
+== Les bases de cette architecture
+
+La logique que vous implémentez doit :
+
+* Être indépendante des frameworks : les frameworks et librairies doivent être des outils, sans pour autant vous contraindre.
+* Être testable indépendamment : les tests doivent pouvoir être réalisés sans éléments externes (interface utilisateur, base de données ...)
+* Être indépendante de l’interface utilisateur : l’interface utilisateur doit pouvoir changer de forme (console, interface web ...)
+* Être indépendante de la base de données : il doit être possible de changer de SGBD.
+* Être indépendante de tout service ou système externe : en résumé, elle ne doit pas avoir conscience de ce qui l’entoure.
+
+== Définition de la structure du projet
+
+* Application : la partie des appels extérieurs
+* Business : La partie métier
+* Infrastructure : la partie de communication avec les infrastructures de l'entreprise
+* Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet
+
+== Mise en place
+
+* création d'un repository git
+* copier le projet exemple dans un repertoire local
