@@ -1,0 +1,23 @@
+=== Case d'usage :
+Le sujet sera un magasin, les points qui seront abordés :
+
+
+[NOTE]
+===============================
+La liste ci-dessous sera amener à évoluer
+===============================
+
+* les bornes d'information : passage du code pour avoir
+* le prix du produit Ttc
+* le nom
+
+* sans doute le plus important le passage en caisse :
+* passage du produit :
+* le nom, le prix Ttc
+* Ajout dans la liste des produits déjà passés
+* Suppression d'un article de la liste des produits
+* liste des produits avec le detail
+* nombre d'articles , le montant total Ttc
+* la liste des articles : code produit, nom, prix Ttc
+
+include::cas_usage_borne.adoc[]

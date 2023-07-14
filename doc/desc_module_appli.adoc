@@ -1,0 +1,16 @@
+== Application
+IMPORTANT: A FAIRE
+
+3. Le module **Application** aura les dépendences suivantes
+* module **Business** :
+* les models
+* les interfaces `adapters.out` et `adapters.in`
+* les services
+* module **Infrastructure** :
+* Les services
+
+
+
+=== Les règles
+=== Packages
+=== Schema

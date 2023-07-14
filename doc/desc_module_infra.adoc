@@ -1,0 +1,42 @@
+== Infrastructure
+=== Les règles
+
+CAUTION: Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes +
+implementer une interface du module **Business** du package `adapters.out` +
+avec les models module **Business**
+
+image::../images/dia_business-0.png[]
+=== Packages
+
+.Composition du module
+[options="header,footer"]
+|=======================
+|       Package       |     implèmentation     | Description
+|      services       | interface adapters.out | Usages définis dans le module **Business**
+|     repository      |                        | Les appels DB
+| repository.entities |                        | Les classes de données pour la DB
+|  repository.mapper  |                        | Convertisseurs entities/DB -> model de **business**
+|        soap         |                        | Les appels en SOAP
+|    soap.entities    |                        | Les classes de données pour les appels en SOAP
+|     soap.mapper     |                        | Convertisseurs entities/SOAP -> model de **business**
+|        rest         |                        | Les appels REST
+|    rest.entities    |                        | Les classes de données pour les appels en REST
+|     rest.mapper     |                        | Convertisseurs entities/REST -> model de **business**
+|=======================
+
+.Service rest
+==========================
+Nous devons développer un service REST qui doit interroger un service du réseau interne
+afin de rechercher une personne depuis son id.
+Voici la définition des différents éléments dans les modules **business** et **infrastructure** +
+
+image::../images/dia_business_ex.png[]
+
+Le déroulement des différents appels sont sous la forme suivante : +
+
+image::../images/dia_seq_business_ex.png[]
+==========================
+
+=== Schema
+
+IMPORTANT: A FAIRE
