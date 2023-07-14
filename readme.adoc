@@ -29,7 +29,6 @@ include::doc/desc_module_infra.adoc[]
 
 include::doc/desc_module_appli.adoc[]
 
-
 == Le Développement
 Pour le développement d'une application avec clean architecture,
 il faut respecter plusieurs règles.
