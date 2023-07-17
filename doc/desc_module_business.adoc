@@ -1,5 +1,5 @@
 == Business
-
+ifndef::imagesdir[:imagesdir: ../images]
 === Les règles
 
 IMPORTANT: Le module **Business** doit-être complétement autonome link:../architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java[contrôle]
@@ -19,4 +19,4 @@ IMPORTANT: Le module **Business** doit-être complétement autonome link:../arch
 
 === Schema
 
-image::../images/dia_dep_mod_business.png[]
+image::dia_dep_mod_business.png[]
