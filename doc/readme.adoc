@@ -1,6 +1,6 @@
 = Clean Architecture
 :imagesdir: ./images
-:includedir: doc
+:includedir: .
 
 image::clean_architecture.png[]
 == Les bases de cette architecture
