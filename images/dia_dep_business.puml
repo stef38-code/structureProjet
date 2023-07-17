@@ -1,0 +1,16 @@
+@startuml
+title diagramme des dépendences du module `application`
+package projet{
+package projet.business #GreenYellow/LightGoldenRodYellow {
+
+}
+package projet.application #2C6E2E {
+
+}
+package projet.infrastructure #4C799C {
+
+}
+}
+projet.application -[#red]-> projet.business
+projet.application -[#red]-> projet.infrastructure
+@enduml
