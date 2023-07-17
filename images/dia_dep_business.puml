@@ -1,5 +1,5 @@
 @startuml
-title diagramme des dépendences
+title diagramme des dépendences du module `application`
 package projet{
 package projet.business #GreenYellow/LightGoldenRodYellow {
 
@@ -11,12 +11,6 @@ package projet.infrastructure #4C799C {
 
 }
 }
-projet.business -[#red]-+ projet.application
-projet.business -[#red]-+ projet.infrastructure
-note top of projet.application
-Utilisation non autorisée
-end note
-note top of projet.infrastructure
-Utilisation non autorisée
-end note
+projet.application -[#red]-> projet.business
+projet.application -[#red]-> projet.infrastructure
 @enduml
