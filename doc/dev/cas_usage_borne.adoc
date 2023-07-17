@@ -1,9 +1,0 @@
-==== les bornes d'information
-
-____
-
-Au moment du passage du code du produit les informations suivantes doivent s'afficher
-* le prix du produit Ttc
-* le nom
-
-____

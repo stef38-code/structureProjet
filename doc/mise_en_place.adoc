@@ -1,5 +1,0 @@
-== Mise en place
-[*Revoir le sujet*]
-
-* création d'un repository git
-* copier le projet exemple dans un repertoire local

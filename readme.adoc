@@ -1,6 +1,5 @@
 = Clean Architecture
 :imagesdir: ./images
-:includedir: .
 
 image::clean_architecture.png[]
 == Les bases de cette architecture
@@ -21,15 +20,98 @@ La logique que vous implémentez doit :
 . Infrastructure : la partie de communication avec les infrastructures de l'entreprise
 . Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet
 
-include::mise_en_place.adoc[]
+== Mise en place
+[*Revoir le sujet*]
+
+* création d'un repository git
+* copier le projet exemple dans un repertoire local
 
 == Description des packages pour chaques modules
 
-include::{includedir}/desc_module_business.adoc[]
+== Business
 
-include::{includedir}/desc_module_infra.adoc[]
+=== Les règles
 
-include::{includedir}/desc_module_appli.adoc[]
+IMPORTANT: Le module **Business** doit-être complétement autonome link:../architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java[contrôle]
+
+=== Packages
+
+.Composition du module
+[options="header,footer"]
+|=======================
+|   Package    |      implèmentation      | Description
+|   services   |  interface adapters.in   | Contient les cases d'usages
+|    rules     |                          | Ensemble de régles qui seront utilisées uniquement dans `services`
+|    models    |                          | Les classes de données
+| adapters.in  |                          | Interfaces pour les cases d'usages
+| adapters.out |                          | Interfaces pour le module `infrastructure`
+|=======================
+
+=== Schema
+
+image::dia_dep_mod_business.png[]
+
+== Infrastructure
+
+=== Les règles
+
+CAUTION: Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes +
+implementer une interface du module **Business** du package `adapters.out` +
+avec les models module **Business**
+
+image::dia_business-0.png[]
+=== Packages
+
+.Composition du module
+[options="header,footer"]
+|=======================
+|       Package       |     implèmentation     | Description
+|      services       | interface adapters.out | Usages définis dans le module **Business**
+|     repository      |                        | Les appels DB
+| repository.entities |                        | Les classes de données pour la DB
+|  repository.mapper  |                        | Convertisseurs entities/DB -> model de **business**
+|        soap         |                        | Les appels en SOAP
+|    soap.entities    |                        | Les classes de données pour les appels en SOAP
+|     soap.mapper     |                        | Convertisseurs entities/SOAP -> model de **business**
+|        rest         |                        | Les appels REST
+|    rest.entities    |                        | Les classes de données pour les appels en REST
+|     rest.mapper     |                        | Convertisseurs entities/REST -> model de **business**
+|=======================
+
+.Service rest
+==========================
+Nous devons développer un service REST qui doit interroger un service du réseau interne
+afin de rechercher une personne depuis son id.
+Voici la définition des différents éléments dans les modules **business** et **infrastructure** +
+
+image::dia_business_ex.png[]
+
+Le déroulement des différents appels sont sous la forme suivante : +
+
+image::dia_seq_business_ex.png[]
+==========================
+
+=== Schema
+
+IMPORTANT: A FAIRE
+
+
+== Application
+IMPORTANT: A FAIRE
+
+3. Le module **Application** aura les dépendences suivantes
+* module **Business** :
+* les models
+* les interfaces `adapters.out` et `adapters.in`
+* les services
+* module **Infrastructure** :
+* Les services
+
+
+
+=== Les règles
+=== Packages
+=== Schema
 
 == Le Développement
 Pour le développement d'une application avec clean architecture,
@@ -37,5 +119,35 @@ il faut respecter plusieurs règles.
 Ces règles seront en partie contrôlées par la librairie https://www.archunit.org/userguide/html/000_Index.html[ArchUnit]
 Ce qui explique la présence du module `Architecture`
 
-include::{includedir}/dev/cas_usage.adoc[]
+=== Case d'usage :
+Le sujet sera un magasin, les points qui seront abordés :
+
+
+[NOTE]
+===============================
+La liste ci-dessous sera amener à évoluer
+===============================
+
+* les bornes d'information : passage du code pour avoir
+* le prix du produit Ttc
+* le nom
+
+* sans doute le plus important le passage en caisse :
+* passage du produit :
+* le nom, le prix Ttc
+* Ajout dans la liste des produits déjà passés
+* Suppression d'un article de la liste des produits
+* liste des produits avec le detail
+* nombre d'articles , le montant total Ttc
+* la liste des articles : code produit, nom, prix Ttc
+
+==== les bornes d'information
+
+____
+
+Au moment du passage du code du produit les informations suivantes doivent s'afficher
+* le prix du produit Ttc
+* le nom
+
+____
 
