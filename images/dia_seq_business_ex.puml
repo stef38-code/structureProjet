@@ -1,0 +1,27 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+participant RestPersonneServiceDefault [
+    =RestPersonneServiceDefault
+    ----
+    ""Personne findById(id String)""
+]
+participant RestPersonneMapperModel [
+    =RestPersonneMapper
+    ----
+    ""Personne to(RestPersonneEntity restPersonneEntity)""
+]
+participant RestPersonne [
+    =RestPersonne
+    ----
+    ""RestPersonneEntity findById(Id String)""
+]
+
+
+[-> RestPersonneServiceDefault ++ : Cas usage
+RestPersonneServiceDefault -> RestPersonne --++: Appel du service rest dans le réseau
+RestPersonne -> RestPersonneServiceDefault --++:
+RestPersonneServiceDefault -> RestPersonneMapperModel --++: conversion classes données
+RestPersonneMapperModel -> RestPersonneServiceDefault --++
+[<- RestPersonneServiceDefault -- : retourne une personne
+@enduml

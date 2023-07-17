@@ -1,0 +1,22 @@
+@startuml
+title diagramme des dépendences
+package projet{
+package projet.business #GreenYellow/LightGoldenRodYellow {
+
+}
+package projet.application #2C6E2E {
+
+}
+package projet.infrastructure #4C799C {
+
+}
+}
+projet.business -[#red]-+ projet.application
+projet.business -[#red]-+ projet.infrastructure
+note top of projet.application
+Utilisation non autorisée
+end note
+note top of projet.infrastructure
+Utilisation non autorisée
+end note
+@enduml
