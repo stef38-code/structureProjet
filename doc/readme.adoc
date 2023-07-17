@@ -21,7 +21,7 @@ La logique que vous implémentez doit :
 . Infrastructure : la partie de communication avec les infrastructures de l'entreprise
 . Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet
 
-include::{includedir}/mise_en_place.adoc[]
+include::mise_en_place.adoc[]
 
 == Description des packages pour chaques modules
 
