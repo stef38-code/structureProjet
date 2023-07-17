@@ -1,5 +1,14 @@
 = Clean Architecture
 :imagesdir: ./images
+:doctype: book
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 image::clean_architecture.png[]
 == Les bases de cette architecture
@@ -23,8 +32,8 @@ La logique que vous implémentez doit :
 == Mise en place
 [*Revoir le sujet*]
 
-* création d'un repository git
-* copier le projet exemple dans un repertoire local
+* Création d'un repository git
+* Copier le projet exemple dans un repertoire local
 
 == Description des packages pour chaques modules
 
@@ -51,6 +60,15 @@ IMPORTANT: Le module **Business** doit-être complétement autonome link:../arch
 
 image::dia_dep_mod_business.png[]
 
+=== Représentation d'un cas
+
+[IMPORTANT]
+A faire
+
+==========================
+
+==========================
+
 == Infrastructure
 
 === Les règles
@@ -59,7 +77,7 @@ CAUTION: Le module **Infrastructure** ne doit avoir uniquement les dépendences 
 implementer une interface du module **Business** du package `adapters.out` +
 avec les models module **Business**
 
-image::dia_business-0.png[]
+
 === Packages
 
 .Composition du module
@@ -77,9 +95,11 @@ image::dia_business-0.png[]
 |    rest.entities    |                        | Les classes de données pour les appels en REST
 |     rest.mapper     |                        | Convertisseurs entities/REST -> model de **business**
 |=======================
+=== Schema
 
-.Service rest
-==========================
+image::dia_dep_infrastructure.png[]
+
+=== Représentation d'un cas
 Nous devons développer un service REST qui doit interroger un service du réseau interne
 afin de rechercher une personne depuis son id.
 Voici la définition des différents éléments dans les modules **business** et **infrastructure** +
@@ -91,27 +111,45 @@ Le déroulement des différents appels sont sous la forme suivante : +
 image::dia_seq_business_ex.png[]
 ==========================
 
-=== Schema
 
-IMPORTANT: A FAIRE
 
 
 == Application
-IMPORTANT: A FAIRE
-
-3. Le module **Application** aura les dépendences suivantes
-* module **Business** :
-* les models
-* les interfaces `adapters.out` et `adapters.in`
-* les services
-* module **Infrastructure** :
-* Les services
-
-
-
 === Les règles
+
+[CAUTION]
+===============================
+Le module **Application** aura les dépendences suivantes
+    module **Business** :
+[square]
+* les models
+    * Les interfaces `adapters.out` et `adapters.in`
+    * Les services
+
+module **Infrastructure** :
+[square]
+    * Les services
+===============================
 === Packages
+.Composition du module
+[options="header,footer"]
+|=======================
+|       Package       |     implèmentation     | Description
+| controllers|| les controleurs de l'application
+| services|| Les services qui utiliseront un ou plusieurs services soit du module **business** ou **infrastructure**
+|Dtos|| Classes de données
+|mapper|| Convertisseurs dto <- -> models(_business_) ou  dto <- -> entitie(_infrastructure_)
+|=======================
+
 === Schema
+
+image::dia_dep_appli.png[]
+=== Représentation d'un cas
+
+[IMPORTANT]
+A faire
+=======================
+=======================
 
 == Le Développement
 Pour le développement d'une application avec clean architecture,

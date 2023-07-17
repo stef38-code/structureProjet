@@ -1,0 +1,21 @@
+@startuml
+title diagramme des dépendences du module `infrastructure`
+package projet{
+package business #GreenYellow/LightGoldenRodYellow {
+package business.adapter.out
+package business.models
+}
+package application #2C6E2E {
+
+}
+package infrastructure #4C799C {
+
+}
+}
+infrastructure -[#red]-> business.adapter.out
+infrastructure -[#red]-> business.models
+infrastructure -[#red]-+ application
+note top of application
+Utilisation non autorisée
+end note
+@enduml
