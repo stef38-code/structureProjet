@@ -1,6 +1,7 @@
 = Clean Architecture
 :imagesdir: ./images
 :doctype: book
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -67,7 +68,7 @@ CAUTION: Le module **Infrastructure** ne doit avoir uniquement les dépendences 
 implementer une interface du module **Business** du package `adapters.out` +
 avec les models module **Business**
 
-image::dia_business-0.png[]
+
 === Packages
 
 .Composition du module
@@ -101,24 +102,32 @@ image::dia_seq_business_ex.png[]
 
 === Schema
 
-IMPORTANT: A FAIRE
+image::dia_dep_infrastructure.png[]
 
 
 == Application
-IMPORTANT: A FAIRE
-
-3. Le module **Application** aura les dépendences suivantes
-* module **Business** :
-* les models
-* les interfaces `adapters.out` et `adapters.in`
-* les services
-* module **Infrastructure** :
-* Les services
-
-
-
 === Les règles
+
+[CAUTION]
+===============================
+Le module **Application** aura les dépendences suivantes
+    module **Business** :
+[square]
+* les models
+    * les interfaces `adapters.out` et `adapters.in`
+    * les services
+
+module **Infrastructure** :
+[square]
+    * Les services
+===============================
 === Packages
+.Composition du module
+[options="header,footer"]
+|=======================
+|       Package       |     implèmentation     | Description
+|=======================
+
 === Schema
 
 == Le Développement
