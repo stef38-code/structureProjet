@@ -1,0 +1,34 @@
+@startuml
+package projet.business #GreenYellow/LightGoldenRodYellow {
+  package projet.business.adapter.out {
+  interface RestPersonneOut {
+    Personne findById(id String)
+  }
+  }
+  package projet.business.adapter.models {
+    class Personne{
+    }
+  }
+}
+package projet.infrastructure #4C799C {
+  package projet.infrastructure.services {
+    class RestPersonneServiceDefault implements projet.business.adapter.out.RestPersonneOut {
+    + {method} Personne findById(id String)
+    }
+  }
+  package projet.infrastructure.rest {
+    class RestPersonne{
+        + RestPersonneEntity findById(Id String)
+    }
+  }
+  package projet.infrastructure.rest.entities {
+    class RestPersonneEntity
+  }
+  package projet.infrastructure.rest.mapper {
+    class RestPersonneMapper{
+        + Personne to(RestPersonneEntity restPersonneEntity)
+        + RestPersonneEntity to(Personne personne)
+    }
+  }
+}
+@enduml
