@@ -58,7 +58,7 @@ IMPORTANT: Le module **Business** doit-être complétement autonome link:../arch
 
 === Schema
 
-image::dia_dep_mod_business.png[]
+image::dia_dep_business.png[]
 
 === Représentation d'un cas
 Nous allons développer l'usage suivant :

@@ -1,0 +1,24 @@
+@startuml
+title diagramme des dépendences du module `business`
+package projet{
+package projet.business #GreenYellow/LightGoldenRodYellow {
+
+}
+package projet.application #2C6E2E {
+
+}
+package projet.infrastructure #4C799C {
+
+}
+}
+
+note "<b>business</b> ne peut pas utiliser un objet d'<b>application</b>" as N1
+note "<b>business</b> ne peut pas utiliser un objet d'<b>infrastructure</b>"  as N2
+
+projet.business --[#red]--> N2
+projet.infrastructure x-[#red]- N2
+
+projet.business --[#red]--> N1
+projet.application x-[#red]- N1
+
+@enduml
