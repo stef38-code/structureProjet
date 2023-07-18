@@ -61,6 +61,13 @@ IMPORTANT: Le module **Business** doit-être complétement autonome link:../arch
 image::dia_dep_mod_business.png[]
 
 === Représentation d'un cas
+Nous allons développer l'usage suivant :
+Rechercher une personne depuis son id en utilisant un service REST qui dans l'infrastructure de l'entreprise
+Cet usage ajoutera la civilité et calculera le nombre de jours depuis sa date de naissance
+
+
+
+
 
 [IMPORTANT]
 A faire
