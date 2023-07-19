@@ -1,0 +1,32 @@
+@startuml
+package projet.business #GreenYellow/LightGoldenRodYellow {
+  package projet.business.adapter.out {
+  interface RestPersonneOut {
+    Personne findById(id String)
+  }
+  }
+  package projet.business.adapter.in {
+    interface PersonneIn {
+      Personne findById(id String)
+    }
+    }
+  package projet.business.models {
+    class Personne{
+    }
+  }
+    package projet.business.rules {
+        class CiviliteRule{
+            +get(String nss)
+        }
+        class CalculNbJoursDNaissRule{
+            +get(LocalDate dNaiss)
+        }
+      }
+      package projet.business.service {
+          class Personne implements projet.business.adapter.in.PersonneIn {
+          }
+        }
+}
+
+}
+@enduml
