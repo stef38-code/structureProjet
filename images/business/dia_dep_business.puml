@@ -12,13 +12,9 @@ package projet.infrastructure #4C799C {
 }
 }
 
-note "<b>business</b> ne peut pas utiliser un objet d'<b>application</b>" as N1
-note "<b>business</b> ne peut pas utiliser un objet d'<b>infrastructure</b>"  as N2
 
-projet.business --[#red]--> N2
-projet.infrastructure x-[#red]- N2
 
-projet.business --[#red]--> N1
-projet.application x-[#red]- N1
+business =[#red]=> infrastructure : \t<:26d4:> Les objets du module <b>business</b>  \nne peuvent pas utiliser \ndes objets du module d'<b>infrastructure</b>
+business =[#red]=> application : \t<:26d4:> Les objets du module <b>business</b>  \nne peuvent pas utiliser \ndes objets du module d'<b>application</b>
 
 @enduml

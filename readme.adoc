@@ -87,7 +87,7 @@ avec les models module **Business**
 
 === Packages
 
-.Composition du module
+. Composition du module
 [options="header,footer"]
 |=======================
 |       Package       |     implèmentation     | Description
@@ -102,6 +102,7 @@ avec les models module **Business**
 |    rest.entities    |                        | Les classes de données pour les appels en REST
 |     rest.mapper     |                        | Convertisseurs entities/REST -> model de **business**
 |=======================
+
 === Schema
 
 image::infrastructure/dia_dep_infrastructure.png[]
@@ -111,15 +112,11 @@ Nous devons développer un service REST qui doit interroger un service du résea
 afin de rechercher une personne depuis son id.
 Voici la définition des différents éléments dans les modules **business** et **infrastructure** +
 
-image::business/dia_business_ex.png[]
+image::infrastructure/dia_infrastructure_ex.png[]
 
 Le déroulement des différents appels sont sous la forme suivante : +
 
-image::business/dia_seq_business_ex.png[]
-==========================
-
-
-
+image::infrastructure/dia_seq_infrastructure_ex.png[]
 
 == Application
 === Les règles
@@ -138,7 +135,8 @@ module **Infrastructure** :
     * Les services
 ===============================
 === Packages
-.Composition du module
+
+Composition du module
 [options="header,footer"]
 |=======================
 |       Package       |     implèmentation     | Description
@@ -167,32 +165,27 @@ Ce qui explique la présence du module `Architecture`
 === Case d'usage :
 Le sujet sera un magasin, les points qui seront abordés :
 
-
 [NOTE]
 ===============================
 La liste ci-dessous sera amener à évoluer
 ===============================
-
-* les bornes d'information : passage du code pour avoir
-* le prix du produit Ttc
-* le nom
-
-* sans doute le plus important le passage en caisse :
+===============================
+[quote]
+Les bornes d'information, au passage du code du produit pour avoir
+[square]
+    - le prix du produit Ttc
+    - le nom
+===============================
+===============================
+[quote]
+Le passage en caisse, sur le tapis de la caisse un ensemble de produit
+[square]
 * passage du produit :
-* le nom, le prix Ttc
+    - le nom, le prix Ttc
 * Ajout dans la liste des produits déjà passés
 * Suppression d'un article de la liste des produits
 * liste des produits avec le detail
 * nombre d'articles , le montant total Ttc
 * la liste des articles : code produit, nom, prix Ttc
-
-==== les bornes d'information
-
-____
-
-Au moment du passage du code du produit les informations suivantes doivent s'afficher
-* le prix du produit Ttc
-* le nom
-
-____
+===============================
 

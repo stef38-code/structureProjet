@@ -1,23 +1,22 @@
 @startuml
 title diagramme des dépendences du module `infrastructure`
 package projet{
+package infrastructure #4C799C {
+
+}
+package application #2C6E2E {
+
+}
 package business #GreenYellow/LightGoldenRodYellow {
 package business.adapter.out{
 }
 package business.models
 }
-package application #2C6E2E {
+}
 
-}
-package infrastructure #4C799C {
-
-}
-}
-note left of infrastructure
-<:26d4:> "<b>infrastructure</b> ne peut pas utiliser un objet d'<b>application</b>"
-end note
 infrastructure --[#red]--> business.adapter.out
 infrastructure --[#red]--> business.models
-infrastructure --[#red]--> application :  <:26d4:>
+
+application <=[#red]= infrastructure : \t<:26d4:> Les objets du module <b>infrastructure</b>  \nne peuvent pas utiliser \ndes objets du module d'<b>application</b>
 
 @enduml
