@@ -58,7 +58,7 @@ IMPORTANT: Le module **Business** doit-être complétement autonome link:../arch
 
 === Schema
 
-image::dia_dep_business.png[]
+image::business/dia_dep_business.png[]
 
 === Représentation d'un cas
 Nous allons développer l'usage suivant :
@@ -104,18 +104,18 @@ avec les models module **Business**
 |=======================
 === Schema
 
-image::dia_dep_infrastructure.png[]
+image::infrastructure/dia_dep_infrastructure.png[]
 
 === Représentation d'un cas
 Nous devons développer un service REST qui doit interroger un service du réseau interne
 afin de rechercher une personne depuis son id.
 Voici la définition des différents éléments dans les modules **business** et **infrastructure** +
 
-image::dia_business_ex.png[]
+image::business/dia_business_ex.png[]
 
 Le déroulement des différents appels sont sous la forme suivante : +
 
-image::dia_seq_business_ex.png[]
+image::business/dia_seq_business_ex.png[]
 ==========================
 
 
@@ -150,7 +150,7 @@ module **Infrastructure** :
 
 === Schema
 
-image::dia_dep_appli.png[]
+image::application/dia_dep_appli.png[]
 === Représentation d'un cas
 
 [IMPORTANT]
