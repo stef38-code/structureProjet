@@ -5,7 +5,7 @@ package projet.business #GreenYellow/LightGoldenRodYellow {
     Personne findById(id String)
   }
   }
-  package projet.business.adapter.models {
+  package projet.business.models {
     class Personne{
     }
   }

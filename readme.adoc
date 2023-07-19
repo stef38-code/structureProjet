@@ -58,9 +58,16 @@ IMPORTANT: Le module **Business** doit-être complétement autonome link:../arch
 
 === Schema
 
-image::dia_dep_mod_business.png[]
+image::business/dia_dep_business.png[]
 
 === Représentation d'un cas
+Nous allons développer l'usage suivant :
+Rechercher une personne depuis son id en utilisant un service REST qui dans l'infrastructure de l'entreprise
+Cet usage ajoutera la civilité et calculera le nombre de jours depuis sa date de naissance
+
+
+
+
 
 [IMPORTANT]
 A faire
@@ -80,7 +87,7 @@ avec les models module **Business**
 
 === Packages
 
-.Composition du module
+. Composition du module
 [options="header,footer"]
 |=======================
 |       Package       |     implèmentation     | Description
@@ -95,24 +102,21 @@ avec les models module **Business**
 |    rest.entities    |                        | Les classes de données pour les appels en REST
 |     rest.mapper     |                        | Convertisseurs entities/REST -> model de **business**
 |=======================
+
 === Schema
 
-image::dia_dep_infrastructure.png[]
+image::infrastructure/dia_dep_infrastructure.png[]
 
 === Représentation d'un cas
 Nous devons développer un service REST qui doit interroger un service du réseau interne
 afin de rechercher une personne depuis son id.
 Voici la définition des différents éléments dans les modules **business** et **infrastructure** +
 
-image::dia_business_ex.png[]
+image::infrastructure/dia_infrastructure_ex.png[]
 
 Le déroulement des différents appels sont sous la forme suivante : +
 
-image::dia_seq_business_ex.png[]
-==========================
-
-
-
+image::infrastructure/dia_seq_infrastructure_ex.png[]
 
 == Application
 === Les règles
@@ -131,7 +135,8 @@ module **Infrastructure** :
     * Les services
 ===============================
 === Packages
-.Composition du module
+
+Composition du module
 [options="header,footer"]
 |=======================
 |       Package       |     implèmentation     | Description
@@ -143,7 +148,7 @@ module **Infrastructure** :
 
 === Schema
 
-image::dia_dep_appli.png[]
+image::application/dia_dep_appli.png[]
 === Représentation d'un cas
 
 [IMPORTANT]
@@ -160,32 +165,27 @@ Ce qui explique la présence du module `Architecture`
 === Case d'usage :
 Le sujet sera un magasin, les points qui seront abordés :
 
-
 [NOTE]
 ===============================
 La liste ci-dessous sera amener à évoluer
 ===============================
-
-* les bornes d'information : passage du code pour avoir
-* le prix du produit Ttc
-* le nom
-
-* sans doute le plus important le passage en caisse :
+===============================
+[quote]
+Les bornes d'information, au passage du code du produit pour avoir
+[square]
+    - le prix du produit Ttc
+    - le nom
+===============================
+===============================
+[quote]
+Le passage en caisse, sur le tapis de la caisse un ensemble de produit
+[square]
 * passage du produit :
-* le nom, le prix Ttc
+    - le nom, le prix Ttc
 * Ajout dans la liste des produits déjà passés
 * Suppression d'un article de la liste des produits
 * liste des produits avec le detail
 * nombre d'articles , le montant total Ttc
 * la liste des articles : code produit, nom, prix Ttc
-
-==== les bornes d'information
-
-____
-
-Au moment du passage du code du produit les informations suivantes doivent s'afficher
-* le prix du produit Ttc
-* le nom
-
-____
+===============================
 
