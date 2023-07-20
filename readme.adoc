@@ -43,6 +43,8 @@ La logique que vous implémentez doit :
 
 IMPORTANT: Le module **Business** doit-être complétement autonome link:../architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java[contrôle]
 
+image::business/dia_dep_business.png[]
+
 === Packages
 
 .Composition du module
@@ -55,10 +57,6 @@ IMPORTANT: Le module **Business** doit-être complétement autonome link:../arch
 | adapters.in  |                          | Interfaces pour les cases d'usages
 | adapters.out |                          | Interfaces pour le module `infrastructure`
 |=======================
-
-=== Schema
-
-image::business/dia_dep_business.png[]
 
 === Représentation d'un cas
 Nous allons développer l'usage suivant :
@@ -80,10 +78,11 @@ On peut se poser la question : Est-ce vraiment important !!
 
 === Les règles
 
-CAUTION: Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes +
+IMPORTANT: Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes +
 implementer une interface du module **Business** du package `adapters.out` +
 avec les models module **Business**
 
+image::infrastructure/dia_dep_infrastructure.png[]
 
 === Packages
 
@@ -103,10 +102,6 @@ avec les models module **Business**
 |     rest.mapper     |                        | Convertisseurs entities/REST -> model de **business**
 |=======================
 
-=== Schema
-
-image::infrastructure/dia_dep_infrastructure.png[]
-
 === Représentation d'un cas
 Nous devons développer un service REST qui doit interroger un service du réseau interne
 afin de rechercher une personne depuis son id.
@@ -121,7 +116,7 @@ image::infrastructure/dia_seq_infrastructure_ex.png[]
 == Application
 === Les règles
 
-[CAUTION]
+[IMPORTANT]
 ===============================
 Le module **Application** aura les dépendences suivantes
     module **Business** :
@@ -134,6 +129,9 @@ module **Infrastructure** :
 [square]
     * Les services
 ===============================
+
+image::application/dia_dep_appli.png[]
+
 === Packages
 
 Composition du module
@@ -146,9 +144,6 @@ Composition du module
 |mapper|| Convertisseurs dto <- -> models(_business_) ou  dto <- -> entitie(_infrastructure_)
 |=======================
 
-=== Schema
-
-image::application/dia_dep_appli.png[]
 === Représentation d'un cas
 
 [IMPORTANT]
