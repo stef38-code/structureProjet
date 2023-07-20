@@ -1,4 +1,5 @@
 @startuml
+title: Diagramme des éléments
 package projet.business #GreenYellow/LightGoldenRodYellow {
   package projet.business.adapter.out {
   interface RestPersonneOut {
@@ -16,14 +17,20 @@ package projet.business #GreenYellow/LightGoldenRodYellow {
   }
     package projet.business.rules {
         class CiviliteRule{
-            +get(String nss)
+            +String get(String nss)
         }
         class CalculNbJoursDNaissRule{
-            +get(LocalDate dNaiss)
+            +int get(LocalDate dNaiss)
         }
       }
       package projet.business.service {
-          class Personne implements projet.business.adapter.in.PersonneIn {
+          class PersonneServiceDefault implements projet.business.adapter.in.PersonneIn {
+          .. Référence au service infrastructure ..
+          - <<final>> RestPersonneOut restPersonneOut
+          .. constructor ..
+          PersonneServiceDefault(RestPersonneOut restPersonneOut)
+          .. Override ..
+          +Personne findById(id String)
           }
         }
 }
