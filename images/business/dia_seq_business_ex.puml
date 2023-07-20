@@ -1,0 +1,33 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+participant PersonneServiceDefault [
+    =PersonneServiceDefault
+    ----
+    ""Personne findById(id String)""
+]
+participant RestPersonneOut [
+    =RestPersonneOut
+    ----
+    ""Personne findById(id String)""
+]
+participant CalculNbJoursDNaissRule [
+    =CalculNbJoursDNaissRule
+    ----
+    ""int get(LocalDate dNaiss)""
+]
+participant CiviliteRule [
+    =CiviliteRule
+    ----
+    ""String get(String nss)""
+]
+
+[-> PersonneServiceDefault ++ : Cas usage
+PersonneServiceDefault -> RestPersonneOut --++: Appel du service rest dans le réseau
+RestPersonneOut -> PersonneServiceDefault --++:
+PersonneServiceDefault -> CalculNbJoursDNaissRule --++: Calcul le nombre de jours depuis la date de naissance
+CalculNbJoursDNaissRule -> PersonneServiceDefault --++
+PersonneServiceDefault -> CiviliteRule --++: Retourne la civilité en fonction du premier chiffre nss
+CiviliteRule -> PersonneServiceDefault --++
+[<- PersonneServiceDefault -- : retourne une personne
+@enduml
