@@ -65,16 +65,16 @@ Nous allons développer l'usage suivant :
 Rechercher une personne depuis son id en utilisant un service REST qui dans l'infrastructure de l'entreprise
 Cet usage ajoutera la civilité et calculera le nombre de jours depuis sa date de naissance
 
+image::business/dia_business_ex.png[]
+
+Le déroulement des différents appels sont sous la forme suivante :
+
+image::business/dia_seq_business_ex.png[]
+
+CAUTION: Pour l'instant l'interface *RestPersonneOut*, ne nous permet pas de savor ce qu'il se cache derrier la méthode *__Personne findById(id String)__*. +
+On peut se poser la question : Est-ce vraiment important !!
 
 
-
-
-[IMPORTANT]
-A faire
-
-==========================
-
-==========================
 
 == Infrastructure
 
