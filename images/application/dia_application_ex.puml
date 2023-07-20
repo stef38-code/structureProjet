@@ -1,0 +1,88 @@
+@startuml
+title: Diagramme des éléments
+package projet{
+    package business #GreenYellow/LightGoldenRodYellow {
+            package adapter{
+                package out {
+                    interface RestPersonneOut {
+                    Personne findById(id String)
+                    }
+                }
+                package in {
+                    interface PersonneIn {
+                      Personne findById(id String)
+                    }
+                }
+            }
+            package models {
+                class Personne{
+                }
+            }
+            package rules {
+                class CiviliteRule{
+                    +String get(String nss)
+                }
+                class CalculNbJoursDNaissRule{
+                    +int get(LocalDate dNaiss)
+                }
+            }
+            package service {
+                class PersonneServiceDefault {
+                    .. Référence au service infrastructure ..
+                    - <<final>> RestPersonneOut restPersonneOut
+                    .. constructor ..
+                    PersonneServiceDefault(RestPersonneOut restPersonneOut)
+                    .. Override ..
+                    +Personne findById(id String)
+                }
+                PersonneServiceDefault --|> projet.business.adapter.in.PersonneIn:  ** Implémentation**
+            }
+    }
+    package infrastructure #4C799C {
+        package services {
+            class RestPersonneServiceDefault {
+            + {method} Personne findById(id String)
+            }
+            RestPersonneServiceDefault --|> projet.business.adapter.out.RestPersonneOut: ** Implémentation**
+        }
+        package rest {
+            class RestPersonne{
+                + RestPersonneEntity findById(Id String)
+            }
+        }
+        package mapper {
+            class RestPersonneMapper{
+                + Personne to(RestPersonneEntity restPersonneEntity)
+                + RestPersonneEntity to(Personne personne)
+            }
+        }
+        package entities {
+            class RestPersonneEntity
+        }
+
+    }
+    package application #2C6E2E {
+        package controllers{
+            class PersonneController{
+                + {method} PersonneDto findById(id String)
+            }
+        }
+        package controllers{
+            class PersonneServiceDefault{
+                + {method} PersonneDto findById(id String)
+            }
+        }
+        package mapper {
+            class DtoPersonneMapper{
+                + Personne to(PersonneDto personneDto)
+                + PersonneDto to(Personne personne)
+            }
+        }
+        package dto{
+            class PersonneDto{
+            }
+        }
+    }
+}
+
+@enduml

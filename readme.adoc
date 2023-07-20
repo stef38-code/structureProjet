@@ -146,8 +146,10 @@ Composition du module
 
 === Représentation d'un cas
 
-[IMPORTANT]
-A faire
+Développement du service mise à disposition d'un front ou autre, avec l'exemple de rechercher une personne depuis un id
+
+image::application/dia_application_ex.png[]
+
 =======================
 =======================
 
