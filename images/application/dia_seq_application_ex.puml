@@ -1,0 +1,65 @@
+@startuml
+
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+
+participant PersonneServiceDefault [
+    =PersonneServiceDefault
+    ----
+    ""Personne findById(id String)""
+]
+participant CalculNbJoursDNaissRule  [
+    =CalculNbJoursDNaissRule
+    ----
+    ""int get(LocalDate dNaiss)""
+]
+participant CiviliteRule [
+    =CiviliteRule
+    ----
+    ""String get(String nss)""
+]
+
+participant RestPersonneServiceDefault #99FF99 [
+    =RestPersonneServiceDefault
+    ----
+    ""Personne findById(id String)""
+]
+participant RestPersonneMapperModel [
+    =RestPersonneMapper
+    ----
+    ""Personne to(RestPersonneEntity restPersonneEntity)""
+]
+participant RestPersonne [
+    =RestPersonne
+    ----
+    ""RestPersonneEntity findById(Id String)""
+]
+
+participant PersonneController[
+    =PersonneController
+    ----
+    PersonneDto findById(id String)
+]
+
+
+
+PersonneController -> RestPersonneServiceDefault --++
+
+PersonneServiceDefault -> RestPersonneServiceDefaultIn --++: Appel du service rest dans le réseau
+
+RestPersonneServiceDefaultIn -> RestPersonne --++: exécution appel du service rest dans le réseau
+RestPersonne -> RestPersonneServiceDefaultIn --++:
+RestPersonneServiceDefaultIn -> RestPersonneMapperModel --++: conversion classes données
+RestPersonneMapperModel -> RestPersonneServiceDefaultIn --++
+RestPersonneServiceDefaultIn -> PersonneServiceDefault --++:
+
+PersonneServiceDefault -> CalculNbJoursDNaissRule --++: Calcul le nombre de jours depuis la date de naissance
+CalculNbJoursDNaissRule -> PersonneServiceDefault --++
+PersonneServiceDefault -> CiviliteRule --++: Retourne la civilité en fonction du premier chiffre nss
+CiviliteRule -> PersonneServiceDefault --++
+[<- PersonneServiceDefault -- : retourne une personne
+
+
+
+@enduml

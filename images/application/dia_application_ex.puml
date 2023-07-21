@@ -1,16 +1,18 @@
 @startuml
 title: Diagramme des éléments
+skinparam nodesep 10
+page 1x2
 package projet{
     package business #GreenYellow/LightGoldenRodYellow {
             package adapter{
                 package out {
                     interface RestPersonneOut {
-                    Personne findById(id String)
+                        {method} Personne findById(id String)
                     }
                 }
                 package in {
                     interface PersonneIn {
-                      Personne findById(id String)
+                      {method} Personne findById(id String)
                     }
                 }
             }
@@ -33,7 +35,7 @@ package projet{
                     .. constructor ..
                     PersonneServiceDefault(RestPersonneOut restPersonneOut)
                     .. Override ..
-                    +Personne findById(id String)
+                    + {method} Personne findById(id String)
                 }
                 PersonneServiceDefault --|> projet.business.adapter.in.PersonneIn:  ** Implémentation**
             }
@@ -41,19 +43,20 @@ package projet{
     package infrastructure #4C799C {
         package services {
             class RestPersonneServiceDefault {
-            + {method} Personne findById(id String)
+                .. Override ..
+                + {method} Personne findById(id String)
             }
-            RestPersonneServiceDefault --|> projet.business.adapter.out.RestPersonneOut: ** Implémentation**
+            RestPersonneServiceDefault -down-|> projet.business.adapter.out.RestPersonneOut: ** Implémentation**
         }
         package rest {
             class RestPersonne{
-                + RestPersonneEntity findById(Id String)
+                + {method} RestPersonneEntity findById(Id String)
             }
         }
         package mapper {
             class RestPersonneMapper{
-                + Personne to(RestPersonneEntity restPersonneEntity)
-                + RestPersonneEntity to(Personne personne)
+                + {method} Personne to(RestPersonneEntity restPersonneEntity)
+                + {method} RestPersonneEntity to(Personne personne)
             }
         }
         package entities {
@@ -64,18 +67,32 @@ package projet{
     package application #2C6E2E {
         package controllers{
             class PersonneController{
+            Classe annotée: @Controller
+            ===
+            .. Référence au service ..
+            - <<final>> PersonneService personneService
+            .. Methode ..
                 + {method} PersonneDto findById(id String)
             }
         }
-        package controllers{
-            class PersonneServiceDefault{
+        package services{
+            interface PersonneService{
                 + {method} PersonneDto findById(id String)
             }
+            class PersonneServiceDefault{
+                Classe annotée: @Service
+                ===
+                .. Référence au service infrastructure ..
+                - <<final>> RestPersonneOut restPersonneOut
+                .. Override ..
+                + {method} PersonneDto findById(id String)
+            }
+             PersonneServiceDefault --|> PersonneService: ** Implémentation**
         }
         package mapper {
             class DtoPersonneMapper{
-                + Personne to(PersonneDto personneDto)
-                + PersonneDto to(Personne personne)
+                + {method} Personne to(PersonneDto personneDto)
+                + {method} PersonneDto to(Personne personne)
             }
         }
         package dto{
@@ -84,5 +101,5 @@ package projet{
         }
     }
 }
-
+infrastructure -[hidden]- business
 @enduml

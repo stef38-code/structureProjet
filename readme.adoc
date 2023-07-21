@@ -15,7 +15,7 @@ image::clean_architecture.png[]
 
 La logique que vous implémentez doit :
 
-* Être indépendante des frameworks : les frameworks et librairies doivent être des outils, sans pour autant vous contraindre.
+* Être indépendante des frameworks : les frameworks et librairies doivent être des outils, sans pour au tant vous contraindre.
 * Être testable indépendamment : les tests doivent pouvoir être réalisés sans éléments externes (interface utilisateur, base de données ...)
 * Être indépendante de l’interface utilisateur : l’interface utilisateur doit pouvoir changer de forme (console, interface web ...)
 * Être indépendante de la base de données : il doit être possible de changer de SGBD.
@@ -33,9 +33,9 @@ La logique que vous implémentez doit :
 [*Revoir le sujet*]
 
 * Création d'un repository git
-* Copier le projet exemple dans un repertoire local
+* Copier le projet exemple dans un répertoire local
 
-== Description des packages pour chaques modules
+== Description des packages pour chaque module
 
 == Business
 
@@ -50,9 +50,9 @@ image::business/dia_dep_business.png[]
 .Composition du module
 [options="header,footer"]
 |=======================
-|   Package    |      implèmentation      | Description
+|   Package    |      implémentation      | Description
 |   services   |  interface adapters.in   | Contient les cases d'usages
-|    rules     |                          | Ensemble de régles qui seront utilisées uniquement dans `services`
+|    rules     |                          | Ensemble de règles qui seront utilisées uniquement dans `services`
 |    models    |                          | Les classes de données
 | adapters.in  |                          | Interfaces pour les cases d'usages
 | adapters.out |                          | Interfaces pour le module `infrastructure`
@@ -69,8 +69,8 @@ Le déroulement des différents appels sont sous la forme suivante :
 
 image::business/dia_seq_business_ex.png[]
 
-CAUTION: Pour l'instant l'interface *RestPersonneOut*, ne nous permet pas de savor ce qu'il se cache derrier la méthode *__Personne findById(id String)__*. +
-On peut se poser la question : Est-ce vraiment important !!
+CAUTION: Pour l'instant l'interface *RestPersonneOut*, ne nous permet pas de savor ce qu'il se cache derrière la méthode *__Personne findById(id String)__*. +
+On peut se poser la question : [red]*Est-ce vraiment important !!*
 
 
 
@@ -78,8 +78,8 @@ On peut se poser la question : Est-ce vraiment important !!
 
 === Les règles
 
-IMPORTANT: Le module **Infrastructure** ne doit avoir uniquement les dépendences suivantes +
-implementer une interface du module **Business** du package `adapters.out` +
+IMPORTANT: Le module **Infrastructure** ne doit avoir uniquement les dépendances suivantes +
+implémenter une interface du module **Business** du package `adapters.out` +
 avec les models module **Business**
 
 image::infrastructure/dia_dep_infrastructure.png[]
@@ -89,7 +89,7 @@ image::infrastructure/dia_dep_infrastructure.png[]
 . Composition du module
 [options="header,footer"]
 |=======================
-|       Package       |     implèmentation     | Description
+|       Package       |     implémentation     | Description
 |      services       | interface adapters.out | Usages définis dans le module **Business**
 |     repository      |                        | Les appels DB
 | repository.entities |                        | Les classes de données pour la DB
@@ -118,7 +118,7 @@ image::infrastructure/dia_seq_infrastructure_ex.png[]
 
 [IMPORTANT]
 ===============================
-Le module **Application** aura les dépendences suivantes
+Le module **Application** aura les dépendances suivantes
     module **Business** :
 [square]
 * les models
@@ -138,7 +138,7 @@ Composition du module
 [options="header,footer"]
 |=======================
 |       Package       |     implèmentation     | Description
-| controllers|| les controleurs de l'application
+| controllers|| les contrôleurs de l'application
 | services|| Les services qui utiliseront un ou plusieurs services soit du module **business** ou **infrastructure**
 |Dtos|| Classes de données
 |mapper|| Convertisseurs dto <- -> models(_business_) ou  dto <- -> entitie(_infrastructure_)
@@ -181,7 +181,7 @@ Le passage en caisse, sur le tapis de la caisse un ensemble de produit
     - le nom, le prix Ttc
 * Ajout dans la liste des produits déjà passés
 * Suppression d'un article de la liste des produits
-* liste des produits avec le detail
+* liste des produits avec le détail
 * nombre d'articles , le montant total Ttc
 * la liste des articles : code produit, nom, prix Ttc
 ===============================
