@@ -1,0 +1,87 @@
+@startuml
+
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+actor User #red
+
+box "Application" #2C6E2E
+participant PersonneController[
+    =PersonneController
+    ----
+    PersonneDto findById(id String)
+]
+participant PersonneServiceDefault [
+    =PersonneServiceDefault
+    ----
+    ""Personne findById(id String)""
+]
+end box
+
+
+box "Business" #GreenYellow/LightGoldenRodYellow
+participant PersonneUseCase [
+    =PersonneUseCase
+    ----
+    ""Personne findById(id String)""
+]
+participant CalculNbJoursDNaissRule  [
+    =CalculNbJoursDNaissRule
+    ----
+    ""int get(LocalDate dNaiss)""
+]
+participant CiviliteRule [
+    =CiviliteRule
+    ----
+    ""String get(String nss)""
+]
+end box
+box "Infrastructure" #4C799C
+participant RestPersonneServiceDefault  [
+    =RestPersonneServiceDefault
+    ----
+    ""Personne findById(id String)""
+]
+participant RestPersonneMapperModel [
+    =RestPersonneMapper
+    ----
+    ""Personne to(RestPersonneEntity restPersonneEntity)""
+]
+participant RestPersonne [
+    =RestPersonne
+    ----
+    ""RestPersonneEntity findById(Id String)""
+]
+end box
+
+
+
+
+User -> PersonneController --++ : Appel
+PersonneController -> PersonneServiceDefault --++:
+PersonneServiceDefault -> PersonneUseCase --++:
+
+PersonneUseCase -> RestPersonneServiceDefault --++: via interface RestPersonneOut
+
+RestPersonneServiceDefault -> RestPersonne --++: Appel du service rest dans le réseau
+RestPersonne -> RestPersonneServiceDefault --++:
+RestPersonneServiceDefault -> RestPersonneMapperModel --++: conversion classes données
+RestPersonneMapperModel -> RestPersonneServiceDefault --++
+
+RestPersonneServiceDefault -> PersonneUseCase --++:
+
+PersonneUseCase -> CalculNbJoursDNaissRule --++:
+CalculNbJoursDNaissRule -> PersonneUseCase --++:
+
+PersonneUseCase -> CiviliteRule --++:
+CiviliteRule -> PersonneUseCase --++:
+
+PersonneUseCase -> PersonneServiceDefault --++:
+PersonneServiceDefault -> PersonneController --++:
+User <- PersonneController -- : PersonneDto
+
+
+
+
+
+@enduml

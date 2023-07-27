@@ -24,7 +24,7 @@ package projet.business #GreenYellow/LightGoldenRodYellow {
         }
       }
       package projet.business.service {
-          class PersonneServiceDefault implements projet.business.adapter.in.PersonneIn {
+          class PersonneUseCase implements projet.business.adapter.in.PersonneIn {
           .. Référence au service infrastructure ..
           - <<final>> RestPersonneOut restPersonneOut
           .. constructor ..

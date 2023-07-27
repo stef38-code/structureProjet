@@ -1,6 +1,8 @@
 @startuml
 skinparam style strictuml
 skinparam sequenceMessageAlign center
+
+box "Infrastructure" #4C799C
 participant RestPersonneServiceDefault [
     =RestPersonneServiceDefault
     ----
@@ -16,7 +18,7 @@ participant RestPersonne [
     ----
     ""RestPersonneEntity findById(Id String)""
 ]
-
+end box
 
 [-> RestPersonneServiceDefault ++ : Cas usage
 RestPersonneServiceDefault -> RestPersonne --++: Appel du service rest dans le réseau
