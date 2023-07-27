@@ -1,8 +1,10 @@
 @startuml
 skinparam style strictuml
 skinparam sequenceMessageAlign center
-participant PersonneServiceDefault [
-    =PersonneServiceDefault
+
+box "Business" #GreenYellow/LightGoldenRodYellow
+participant PersonneUseCase [
+    =PersonneUseCase
     ----
     ""Personne findById(id String)""
 ]
@@ -21,13 +23,14 @@ participant CiviliteRule [
     ----
     ""String get(String nss)""
 ]
+end box
 
-[-> PersonneServiceDefault ++ : Cas usage
-PersonneServiceDefault -> RestPersonneOut --++: Appel du service rest dans le réseau
-RestPersonneOut -> PersonneServiceDefault --++:
-PersonneServiceDefault -> CalculNbJoursDNaissRule --++: Calcul le nombre de jours depuis la date de naissance
-CalculNbJoursDNaissRule -> PersonneServiceDefault --++
-PersonneServiceDefault -> CiviliteRule --++: Retourne la civilité en fonction du premier chiffre nss
-CiviliteRule -> PersonneServiceDefault --++
-[<- PersonneServiceDefault -- : retourne une personne
+[-> PersonneUseCase ++ : Cas usage
+PersonneUseCase -> RestPersonneOut --++: Appel du service rest dans le réseau
+RestPersonneOut -> PersonneUseCase --++:
+PersonneUseCase -> CalculNbJoursDNaissRule --++: Calcul le nombre de jours depuis la date de naissance
+CalculNbJoursDNaissRule -> PersonneUseCase --++
+PersonneUseCase -> CiviliteRule --++: Retourne la civilité en fonction du premier chiffre nss
+CiviliteRule -> PersonneUseCase --++
+[<- PersonneUseCase -- : retourne une personne
 @enduml
