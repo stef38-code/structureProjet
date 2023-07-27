@@ -65,11 +65,11 @@ Cet usage ajoutera la civilité et calculera le nombre de jours depuis sa date d
 
 image::business/dia_business_ex.png[]
 
-Le déroulement des différents appels sont sous la forme suivante :
+Les différents appels sont sous la forme suivante :
 
 image::business/dia_seq_business_ex.png[]
 
-CAUTION: Pour l'instant l'interface *RestPersonneOut*, ne nous permet pas de savor ce qu'il se cache derrière la méthode *__Personne findById(id String)__*. +
+CAUTION: Pour l'instant l'interface *RestPersonneOut* ne nous permet pas de savor ce qu'il se cache derrière la méthode *__Personne findById(id String)__*. +
 On peut se poser la question : [red]*Est-ce vraiment important !!*
 
 
@@ -146,10 +146,10 @@ Composition du module
 
 === Représentation d'un cas
 
-Développement du service mise à disposition d'un front ou autre, avec l'exemple de rechercher une personne depuis un id
+Développement du service mise à disposition d'un front ou autre chose, avec l'exemple de rechercher une personne depuis un id
 
 image::application/dia_application_ex.png[]
-
+image::application/dia_seq_application_ex.png[]
 =======================
 =======================
 

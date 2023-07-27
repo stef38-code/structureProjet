@@ -3,9 +3,25 @@
 skinparam style strictuml
 skinparam sequenceMessageAlign center
 
+actor User #red
 
+box "Application" #2C6E2E
+participant PersonneController[
+    =PersonneController
+    ----
+    PersonneDto findById(id String)
+]
 participant PersonneServiceDefault [
     =PersonneServiceDefault
+    ----
+    ""Personne findById(id String)""
+]
+end box
+
+
+box "Business" #GreenYellow/LightGoldenRodYellow
+participant PersonneUseCase [
+    =PersonneUseCase
     ----
     ""Personne findById(id String)""
 ]
@@ -19,8 +35,9 @@ participant CiviliteRule [
     ----
     ""String get(String nss)""
 ]
-
-participant RestPersonneServiceDefault #99FF99 [
+end box
+box "Infrastructure" #4C799C
+participant RestPersonneServiceDefault  [
     =RestPersonneServiceDefault
     ----
     ""Personne findById(id String)""
@@ -35,30 +52,35 @@ participant RestPersonne [
     ----
     ""RestPersonneEntity findById(Id String)""
 ]
-
-participant PersonneController[
-    =PersonneController
-    ----
-    PersonneDto findById(id String)
-]
+end box
 
 
 
-PersonneController -> RestPersonneServiceDefault --++
 
-PersonneServiceDefault -> RestPersonneServiceDefaultIn --++: Appel du service rest dans le réseau
+User -> PersonneController --++ : Appel
+PersonneController -> PersonneServiceDefault --++:
+PersonneServiceDefault -> PersonneUseCase --++:
 
-RestPersonneServiceDefaultIn -> RestPersonne --++: exécution appel du service rest dans le réseau
-RestPersonne -> RestPersonneServiceDefaultIn --++:
-RestPersonneServiceDefaultIn -> RestPersonneMapperModel --++: conversion classes données
-RestPersonneMapperModel -> RestPersonneServiceDefaultIn --++
-RestPersonneServiceDefaultIn -> PersonneServiceDefault --++:
+PersonneUseCase -> RestPersonneServiceDefault --++: via interface RestPersonneOut
 
-PersonneServiceDefault -> CalculNbJoursDNaissRule --++: Calcul le nombre de jours depuis la date de naissance
-CalculNbJoursDNaissRule -> PersonneServiceDefault --++
-PersonneServiceDefault -> CiviliteRule --++: Retourne la civilité en fonction du premier chiffre nss
-CiviliteRule -> PersonneServiceDefault --++
-[<- PersonneServiceDefault -- : retourne une personne
+RestPersonneServiceDefault -> RestPersonne --++: Appel du service rest dans le réseau
+RestPersonne -> RestPersonneServiceDefault --++:
+RestPersonneServiceDefault -> RestPersonneMapperModel --++: conversion classes données
+RestPersonneMapperModel -> RestPersonneServiceDefault --++
+
+RestPersonneServiceDefault -> PersonneUseCase --++:
+
+PersonneUseCase -> CalculNbJoursDNaissRule --++:
+CalculNbJoursDNaissRule -> PersonneUseCase --++:
+
+PersonneUseCase -> CiviliteRule --++:
+CiviliteRule -> PersonneUseCase --++:
+
+PersonneUseCase -> PersonneServiceDefault --++:
+PersonneServiceDefault -> PersonneController --++:
+User <- PersonneController -- : PersonneDto
+
+
 
 
 

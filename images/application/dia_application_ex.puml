@@ -29,7 +29,7 @@ package projet{
                 }
             }
             package service {
-                class PersonneServiceDefault {
+                class PersonneUseCase {
                     .. Référence au service infrastructure ..
                     - <<final>> RestPersonneOut restPersonneOut
                     .. constructor ..
@@ -37,7 +37,7 @@ package projet{
                     .. Override ..
                     + {method} Personne findById(id String)
                 }
-                PersonneServiceDefault --|> projet.business.adapter.in.PersonneIn:  ** Implémentation**
+                PersonneUseCase --|> projet.business.adapter.in.PersonneIn:  ** Implémentation**
             }
     }
     package infrastructure #4C799C {
