@@ -1,6 +1,7 @@
 = Clean Architecture
 :imagesdir: ./images
 :doctype: book
+:toc:
 
 ifdef::env-github[]
 :tip-caption: :bulb:
@@ -23,17 +24,12 @@ La logique que vous implémentez doit :
 
 == Définition de la structure du projet
 
-.Steps
-. Application : la partie des appels extérieurs
-. Business : La partie métier
-. Infrastructure : la partie de communication avec les infrastructures de l'entreprise
-. Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet
 
-== Mise en place
-[*Revoir le sujet*]
-
-* Création d'un repository git
-* Copier le projet exemple dans un répertoire local
+.Liste des modules
+* Application : la partie des appels extérieurs
+* Business : La partie métier
+* Infrastructure : la partie de communication avec les infrastructures de l'entreprise
+* Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet
 
 == Description des packages pour chaque module
 
@@ -47,6 +43,7 @@ image::business/dia_dep_business.png[]
 
 === Packages
 
+[caption=]
 .Composition du module
 [options="header,footer"]
 |=======================
@@ -59,9 +56,9 @@ image::business/dia_dep_business.png[]
 |=======================
 
 === Représentation d'un cas
-Nous allons développer l'usage suivant :
-Rechercher une personne depuis son id en utilisant un service REST qui dans l'infrastructure de l'entreprise
-Cet usage ajoutera la civilité et calculera le nombre de jours depuis sa date de naissance
+Nous allons développer l'usage suivant : +
+Rechercher une personne depuis son id en utilisant un service REST qui est dans l'infrastructure de l'entreprise +
+Cet usage retournera une personne, mais il ajoutera la civilité et calculera le nombre de jours depuis sa date de naissance
 
 image::business/dia_business_ex.png[]
 
@@ -85,8 +82,8 @@ avec les models module **Business**
 image::infrastructure/dia_dep_infrastructure.png[]
 
 === Packages
-
-. Composition du module
+[caption=]
+.Composition du module
 [options="header,footer"]
 |=======================
 |       Package       |     implémentation     | Description
@@ -133,8 +130,8 @@ module **Infrastructure** :
 image::application/dia_dep_appli.png[]
 
 === Packages
-
-Composition du module
+[caption=]
+.Composition du module
 [options="header,footer"]
 |=======================
 |       Package       |     implèmentation     | Description
@@ -146,12 +143,12 @@ Composition du module
 
 === Représentation d'un cas
 
-Développement du service mise à disposition d'un front ou autre chose, avec l'exemple de rechercher une personne depuis un id
+Développement du service mise à disposition pour un front ou autre chose +
+[quote]
+Exemple : Rechercher une personne depuis un id
 
 image::application/dia_application_ex.png[]
 image::application/dia_seq_application_ex.png[]
-=======================
-=======================
 
 == Le Développement
 Pour le développement d'une application avec clean architecture,
@@ -186,3 +183,11 @@ Le passage en caisse, sur le tapis de la caisse un ensemble de produit
 * la liste des articles : code produit, nom, prix Ttc
 ===============================
 
+== Mise en place
+[*completer le sujet*]
+
+* Création d'un repository git
+* Copier le projet exemple dans un répertoire local
+
+== Ressources
+[*Revoir le sujet*]
