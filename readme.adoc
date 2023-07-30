@@ -1,6 +1,6 @@
 = Clean Architecture
 :imagesdir: ./images
-:doctype: book
+:doctype: article
 :toc:
 
 ifdef::env-github[]
@@ -29,9 +29,11 @@ La logique que vous implémentez doit :
 * Application : la partie des appels extérieurs
 * Business : La partie métier
 * Infrastructure : la partie de communication avec les infrastructures de l'entreprise
-* Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet
+* Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet +
+[NOTE]
+Ces règles seront en partie contrôlées par la librairie https://www.archunit.org/userguide/html/000_Index.html[ArchUnit]
 
-== Description des packages pour chaque module
+== Description de chaque module
 
 == Business
 
@@ -156,38 +158,34 @@ il faut respecter plusieurs règles.
 Ces règles seront en partie contrôlées par la librairie https://www.archunit.org/userguide/html/000_Index.html[ArchUnit]
 Ce qui explique la présence du module `Architecture`
 
-=== Case d'usage :
-Le sujet sera un magasin, les points qui seront abordés :
 
-[NOTE]
-===============================
-La liste ci-dessous sera amener à évoluer
-===============================
-===============================
-[quote]
-Les bornes d'information, au passage du code du produit pour avoir
-[square]
-    - le prix du produit Ttc
-    - le nom
-===============================
-===============================
-[quote]
-Le passage en caisse, sur le tapis de la caisse un ensemble de produit
-[square]
-* passage du produit :
-    - le nom, le prix Ttc
-* Ajout dans la liste des produits déjà passés
-* Suppression d'un article de la liste des produits
-* liste des produits avec le détail
-* nombre d'articles , le montant total Ttc
-* la liste des articles : code produit, nom, prix Ttc
-===============================
+include::./casUsage.adoc[]
+
 
 == Mise en place
-[*completer le sujet*]
+Comment mettre en place cette structure :
 
-* Création d'un repository git
-* Copier le projet exemple dans un répertoire local
+[IMPORTANT]
+*Completer le sujet*
+
+* Nouveau projet
+* Projet existant
 
 == Ressources
-[*Revoir le sujet*]
+
+=== Clean Architecture
+[IMPORTANT]
+*Completer le sujet*
+
+=== Behavior Driven Development (BDD)
+==== Générale
+* https://www.wefiit.com/blog/rediger-en-gherkin[Rédiger en gherkin]
+* https://www.artza-technologies.com/blog/langage-gherkin[Langage gherkin]
+* https://allaboutqablog.com/ecrivez-de-beaux-cas-de-test-avec-gherkin/[Écrivez de beaux cas de test avec gherkin]
+* https://blog.ippon.fr/2021/05/26/gherkin-et-pourquoi-pas-en-francais/[Gherkin et pourquoi pas en francais]
+
+==== Développement (Java)
+* https://cucumber.io/docs/installation/java/[site officiel cucumber]
+* https://cucumber.io/docs/gherkin/languages/#gherkin-dialect-fr-content[Correspondance en francais]
+* https://isabelle-blasquez.developpez.com/tutoriels/java/cucumber-test-bdd/[tutorial cucumber test bdd]
+
