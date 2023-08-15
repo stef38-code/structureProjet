@@ -140,7 +140,11 @@ image::application/dia_dep_appli.png[]
 | controllers|| les contrôleurs de l'application
 | services|| Les services qui utiliseront un ou plusieurs services soit du module **business** ou **infrastructure**
 |Dtos|| Classes de données
-|mapper|| Convertisseurs dto <- -> models(_business_) ou  dto <- -> entitie(_infrastructure_)
+|mapper| a|Convertisseurs :
+
+* dto <- -> models(_business_)
+* dto <- -> entitie(_infrastructure_)
+
 |=======================
 
 === Représentation d'un cas
@@ -166,7 +170,8 @@ include::./casUsage.adoc[]
 Comment mettre en place cette structure :
 
 [IMPORTANT]
-*Completer le sujet*
+    *Completer le sujet*
+
 
 * Nouveau projet
 * Projet existant
@@ -179,12 +184,14 @@ Comment mettre en place cette structure :
 
 === Behavior Driven Development (BDD)
 ==== Générale
+
 * https://www.wefiit.com/blog/rediger-en-gherkin[Rédiger en gherkin]
 * https://www.artza-technologies.com/blog/langage-gherkin[Langage gherkin]
 * https://allaboutqablog.com/ecrivez-de-beaux-cas-de-test-avec-gherkin/[Écrivez de beaux cas de test avec gherkin]
 * https://blog.ippon.fr/2021/05/26/gherkin-et-pourquoi-pas-en-francais/[Gherkin et pourquoi pas en francais]
 
 ==== Développement (Java)
+
 * https://cucumber.io/docs/installation/java/[site officiel cucumber]
 * https://cucumber.io/docs/gherkin/languages/#gherkin-dialect-fr-content[Correspondance en francais]
 * https://isabelle-blasquez.developpez.com/tutoriels/java/cucumber-test-bdd/[tutorial cucumber test bdd]

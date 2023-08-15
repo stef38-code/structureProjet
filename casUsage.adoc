@@ -13,6 +13,7 @@ Les bornes d'informations d'un magasin suite au passage d'un code-barre les info
 [example]
 Le prix au kilo dans le cas d'un produit vendu au poid (légumes, fruits…)
 
+
 [quote]
 Le passage en caisse, sur le tapis de la caisse un ensemble de produit
 [square]
@@ -23,4 +24,4 @@ Le passage en caisse, sur le tapis de la caisse un ensemble de produit
 * liste des produits avec le détail
 * nombre d'articles , le montant total Ttc
 * la liste des articles : code produit, nom, prix Ttc
-===============================
+
