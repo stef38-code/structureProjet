@@ -4,6 +4,7 @@ import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchRule;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
@@ -13,15 +14,14 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
 class CheckArchitectureBusinessTest {
-    /*JavaClasses importedClasses = new ClassFileImporter()
-            .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
-            .importPackages("org.example.structure");*/
+
     JavaClasses importedClasses = new ClassFileImporter()
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_JARS)
             .importPath(Paths.get(".."));
 
     @Test
+    @DisplayName("Le module 'business' indépendance")
     void businessLayerDependenciesAreRespected() {
         ArchRule rule = layeredArchitecture().consideringOnlyDependenciesInLayers()
                 .withOptionalLayers(true)
@@ -34,6 +34,7 @@ class CheckArchitectureBusinessTest {
     }
 
     @Test
+    @DisplayName("..adapters.* doit uniquement contenir des interfaces")
     void shouldBeInProperPackage_AndBeInterfaces() {
         ArchRule rule = classes().that()
                 .resideInAPackage("..adapters..")
@@ -43,6 +44,7 @@ class CheckArchitectureBusinessTest {
     }
 
     @Test
+    @DisplayName("business.services doit implémente une interface contenue dans le package adapters.in")
     void shouldBeImplementTheInterfaceInPackageAdaptersIn() {
         ArchRule rule = classes().that()
                 .resideInAPackage("..business.services")
@@ -54,6 +56,7 @@ class CheckArchitectureBusinessTest {
     //todo ajout la régles : les regles de gestion ne peut être utilisées que dans les classes contenues dans ..business.services
     @Test
     void test(){
+
         ArchRule rule = classes().that().resideInAPackage("..business.rules").should()
                 .onlyBeAccessed()
                 .byClassesThat()
