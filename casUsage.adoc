@@ -5,7 +5,6 @@ Au cours du développement des règles de contrôle seront ajoutés dans le modu
 
 ==== Les bornes d'information
 
-[quote]
 Les bornes d'informations d'un magasin suite au passage d'un code-barre les informations suivantes :
 
 * Le nom du produit
@@ -13,8 +12,17 @@ Les bornes d'informations d'un magasin suite au passage d'un code-barre les info
 [example]
 Le prix au kilo dans le cas d'un produit vendu au poid (légumes, fruits…)
 
+[source,gherkin]
+____
+*Scénario:* Borne d'information +
+*Étant donné* un client passe un "code produit" à la borne +
+*Quand* l'événement de lecture est reçu +
+*Alors* les informations concernant du produit sont affichées
+____
+
 
 [quote]
+____
 Le passage en caisse, sur le tapis de la caisse un ensemble de produit
 [square]
 * passage du produit :
@@ -24,4 +32,4 @@ Le passage en caisse, sur le tapis de la caisse un ensemble de produit
 * liste des produits avec le détail
 * nombre d'articles , le montant total Ttc
 * la liste des articles : code produit, nom, prix Ttc
-
+____

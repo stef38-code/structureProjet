@@ -1,7 +1,8 @@
 = Clean Architecture
 :imagesdir: ./images
 :doctype: article
-:toc:
+:toc: left
+:icons: font
 
 ifdef::env-github[]
 :tip-caption: :bulb:
