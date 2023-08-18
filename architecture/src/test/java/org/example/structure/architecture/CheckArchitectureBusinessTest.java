@@ -18,7 +18,8 @@ class CheckArchitectureBusinessTest {
     JavaClasses importedClasses = new ClassFileImporter()
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_JARS)
-            .importPath(Paths.get(".."));
+            .importPath(Paths.get(".."))
+            ;
 
     @Test
     @DisplayName("Le module 'business' indépendance")
@@ -53,15 +54,17 @@ class CheckArchitectureBusinessTest {
                 .because("Cette classe n'implémente pas une interface contenue dans le package adapters.in");
         rule.check(importedClasses);
     }
-    //todo ajout la régles : les regles de gestion ne peut être utilisées que dans les classes contenues dans ..business.services
+
     @Test
-    void test(){
+    @DisplayName("les regles de gestion ne peut être utilisées que dans les classes contenues dans ..business.services ou ..business.rules")
+    void shouldBeUseTheRuleInPackageBusinessServices_orBusinessRules(){
 
         ArchRule rule = classes().that().resideInAPackage("..business.rules").should()
-                .onlyBeAccessed()
-                .byClassesThat()
-                .resideInAPackage("..business.services");
+                .onlyHaveDependentClassesThat()
+                .resideInAnyPackage("..business.services","..business.rules")
+                .because("les règles de gestion ne peut être utilisées que dans les classes contenues dans ..business.services");
 
         rule.check(importedClasses);
     }
+
 }

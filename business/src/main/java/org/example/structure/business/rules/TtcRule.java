@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TtcRule {
-    private static Logger log = LoggerFactory.getLogger(TtcRule.class);
+    private final Logger log = LoggerFactory.getLogger(TtcRule.class);
     public double calcule(double prixHtc,int taux){
         if(prixHtc<=0){
             return 0.0d;
