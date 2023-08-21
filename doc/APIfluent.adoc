@@ -1,0 +1,58 @@
+= API fluent
+= Clean Architecture
+:doctype: article
+:toc: left
+:toclevels: 6
+:icons: font
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+== Définition
+Un style de codage qui oblige le développeur à créer l'objet en séquence en appelant chaque méthode setter l'une après l'autre jusqu'à ce que tous les attributs requis soient définis.
+
+== Pattern Builder vs API fluent
+=== Pattern Builder
+Le modèle builder est très souvent utilisé dans les applications, mais présente quelques inconvénients, à savoir qu'il est possible de saisir les propriétés dans l'ordre que l'on veut.
+Rien oblige le développeur de saisir une propriété avant une autre.
+
+=== API fluent
+Le modèle builder fluent exige le développeur à saisir les propriétés dans un ordre définit.
+L'inconvénient, c'est qu'il demande plus de développement.
+
+
+== Comment s'y prendre
+=== La classe modèle.
+
+* Les attributs doivent tous être [red]#*private final*#
+* Le constructeur  [red]#n'est pas qualifié ,pas : [line-through]*public, private ou protected*#
+* Uniquement des méthodes de type GetXXX
+
+[source,java]
+----
+include::../business/src/main/java/org/example/structure/business/models/Article.java[]
+----
+
+=== L'interface step
+Nous allons définir l'ordre des saisies
+[source,java]
+----
+include::../business/src/main/java/org/example/structure/business/models/ArticleStep.java[]
+----
+
+=== La classe builder.
+La classe builder implémente la classe Step
+
+[source,java]
+----
+include::../business/src/main/java/org/example/structure/business/models/ArticleBuilder.java[]
+----
+== Ressources
+
+* https://www.infoq.com/fr/articles/java-api-fluent/[java-api-fluent]
+* https://dev.to/clementdeb/le-pattern-builder-et-les-donnees-obligatoires-51pl[le-pattern-builder-et-les-donnees-obligatoires]
+* https://ippon.developpez.com/tutoriels/java/patron-conception-builder/[patron-conception-builder]
