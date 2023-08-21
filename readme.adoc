@@ -2,6 +2,7 @@
 :imagesdir: ./images
 :doctype: article
 :toc: left
+:toclevels: 6
 :icons: font
 
 ifdef::env-github[]
@@ -12,7 +13,7 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-image::clean_architecture.png[]
+image::/doc/images/clean_architecture.png[]
 == Les bases de cette architecture
 
 La logique que vous implémentez doit :
@@ -42,7 +43,7 @@ Ces règles seront en partie contrôlées par la librairie https://www.archunit.
 
 IMPORTANT: Le module **Business** doit-être complétement autonome link:../architecture/src/test/java/org/example/structure/architecture/CheckArchitectureBusinessTest.java[contrôle]
 
-image::business/dia_dep_business.png[]
+image::/doc/images/business/dia_dep_business.png[]
 
 === Packages
 
@@ -63,11 +64,11 @@ Nous allons développer l'usage suivant : +
 Rechercher une personne depuis son id en utilisant un service REST qui est dans l'infrastructure de l'entreprise +
 Cet usage retournera une personne, mais il ajoutera la civilité et calculera le nombre de jours depuis sa date de naissance
 
-image::business/dia_business_ex.png[]
+image::/doc/images/business/dia_business_ex.png[]
 
 Les différents appels sont sous la forme suivante :
 
-image::business/dia_seq_business_ex.png[]
+image::/doc/images/business/dia_seq_business_ex.png[]
 
 CAUTION: Pour l'instant l'interface *RestPersonneOut* ne nous permet pas de savor ce qu'il se cache derrière la méthode *__Personne findById(id String)__*. +
 On peut se poser la question : [red]*Est-ce vraiment important !!*
@@ -82,7 +83,7 @@ IMPORTANT: Le module **Infrastructure** ne doit avoir uniquement les dépendance
 implémenter une interface du module **Business** du package `adapters.out` +
 avec les models module **Business**
 
-image::infrastructure/dia_dep_infrastructure.png[]
+image::/doc/images/infrastructure/dia_dep_infrastructure.png[]
 
 === Packages
 [caption=]
@@ -107,11 +108,11 @@ Nous devons développer un service REST qui doit interroger un service du résea
 afin de rechercher une personne depuis son id.
 Voici la définition des différents éléments dans les modules **business** et **infrastructure** +
 
-image::infrastructure/dia_infrastructure_ex.png[]
+image::/doc/images/infrastructure/dia_infrastructure_ex.png[]
 
 Le déroulement des différents appels sont sous la forme suivante : +
 
-image::infrastructure/dia_seq_infrastructure_ex.png[]
+image::/doc/images/infrastructure/dia_seq_infrastructure_ex.png[]
 
 == Application
 === Les règles
@@ -130,7 +131,7 @@ module **Infrastructure** :
     * Les services
 ===============================
 
-image::application/dia_dep_appli.png[]
+image::/doc/images/application/dia_dep_appli.png[]
 
 === Packages
 [caption=]
@@ -154,8 +155,8 @@ Développement du service mise à disposition pour un front ou autre chose +
 [quote]
 Exemple : Rechercher une personne depuis un id
 
-image::application/dia_application_ex.png[]
-image::application/dia_seq_application_ex.png[]
+image::/doc/images/application/dia_application_ex.png[]
+image::/doc/images/application/dia_seq_application_ex.png[]
 
 == Le Développement
 Pour le développement d'une application avec clean architecture,
@@ -164,7 +165,7 @@ Ces règles seront en partie contrôlées par la librairie https://www.archunit.
 Ce qui explique la présence du module `Architecture`
 
 
-include::./casUsage.adoc[]
+include::./doc/casUsage.adoc[]
 
 
 == Mise en place
