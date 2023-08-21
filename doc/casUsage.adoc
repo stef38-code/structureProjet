@@ -1,0 +1,64 @@
+=== Case d'usage :
+Le sujet sera un magasin de grande surface
+[NOTE]
+Au cours du développement des règles de contrôle seront ajoutés dans le module `architecture`
+
+==== Les bornes d'information
+
+Les bornes d'informations d'un magasin permettent d'avoir suite au passage d'un code-barre(code produit) d'un article les informations suivantes :
+
+* Le nom du produit
+* Le prix (ttc) en euro
+* Le volume
+
+[source,exemple 1]
+____
+*Scénario:* Borne d'information +
+*Étant donné* un client passe un "code produit" d'un article à la borne +
+
+|===
+|Code produit
+
+|05948707
+|===
+
+*Quand* l'événement de lecture est reçu +
+*Alors* les informations concernant l'article sont affichées
+
+|===
+|Nom du produit |Prix (ttc) en euro|Volume
+|Cornichons Gherkins - Everyday
+|3.59€
+|375ml
+|===
+
+____
+===== Développement
+Pour développer ce cas d'usage, nous allons utiliser le https://igm.univ-mlv.fr/~dr/XPOSE2009/TDD/pagesHTML/ExempleJAVA.html[TDD]
+Puis dans un deuxième temps, nous utiliserons le https://www.arolla.fr/blog/2012/06/bdd-c-est-quoi-donc/[BDD]
+
+====== Etape 1
+Nous allons définir notre premier cas d'usage et pour commencer nous allons créer un test dans le module *business* package *org.example.structure.business.services*, tous les cas d'usages doivent être dans ce package
+
+* Creation du Test :
+
+[source,java]
+----
+include::../business/src/test/java/org/example/structure/business/services/BorneInformationTest.java[]
+----
+
+
+
+
+[quote]
+____
+Le passage en caisse, sur le tapis de la caisse un ensemble de produit
+[square]
+* passage du produit :
+- le nom, le prix Ttc
+* Ajout dans la liste des produits déjà passés
+* Suppression d'un article de la liste des produits
+* liste des produits avec le détail
+* nombre d'articles , le montant total Ttc
+* la liste des articles : code produit, nom, prix Ttc
+____
