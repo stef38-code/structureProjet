@@ -44,12 +44,23 @@ Nous allons définir l'ordre des saisies
 include::../business/src/main/java/org/example/structure/business/models/ArticleStep.java[]
 ----
 
-=== La classe builder.
-La classe builder implémente la classe Step
+=== La classe Api Fluent.
+La classe api fluent implémente la classe Step
+
+[source,java]
+----
+include::../business/src/main/java/org/example/structure/business/models/ArticleApi.java[]
+----
+=== La classe Builder.
 
 [source,java]
 ----
 include::../business/src/main/java/org/example/structure/business/models/ArticleBuilder.java[]
+----
+=== Test
+[source,java]
+----
+include::../business/src/test/java/org/example/structure/business/models/ArticleTest.java[]
 ----
 == Ressources
 

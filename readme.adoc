@@ -181,8 +181,16 @@ Comment mettre en place cette structure :
 == Ressources
 
 === Clean Architecture
-[IMPORTANT]
-*Completer le sujet*
+
+* https://easypartner.fr/blog/la-clean-architecture-couteau-suisse-du-code/[la-clean-architecture-couteau-suisse-du-code]
+
+* https://blog.octo.com/architecture-hexagonale-clean-architecture-bonnet-blanc-blanc-bonnet-compte-rendu-du-talk-de-christophe-breheret-girardin-du-comptoir-x-la-duck-conf-2023/[architecture-hexagonale-clean-architecture-bonnet-blanc-blanc-bonnet]
+
+* https://medium.com/javarevisited/hexagonal-architecture-with-domain-presenter-entity-segregation-on-spring-webflux-ef053a495bdc[hexagonal-architecture-entity-segregation-on-spring]
+
+* https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html[uncle-bob the-clean-architecture]
+
+* https://www.adimeo.com/blog/forum-php-2019-clean-architecture[forum-php-2019-clean-architecture]
 
 === Behavior Driven Development (BDD)
 ==== Générale
