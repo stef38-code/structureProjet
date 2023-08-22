@@ -19,5 +19,57 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctorj</artifactId>
+            <version>2.5.10</version>
+        </dependency>
+    </dependencies>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctor-maven-plugin</artifactId>
+            <version>2.2.4</version>
+            <executions>
+                <execution>
+                    <id>output-html-readme</id>
+                    <phase>generate-resources</phase>
+                    <goals>
+                        <goal>process-asciidoc</goal>
+                    </goals>
+                    <configuration>
+                        <backend>html</backend>
+                        <attributes>
+                            <toc>left</toc>
+                            <linkcss>false</linkcss>
+                            <source-highlighter>coderay</source-highlighter>
+                        </attributes>
+                       <!-- <sourceDocumentName>readme.adoc</sourceDocumentName>-->
+                       <!-- <preserveDirectories>true</preserveDirectories>-->
+                    </configuration>
+                </execution>
+                <!--<execution>
+                    <id>output-docbook</id>
+                    <phase>generate-resources</phase>
+                    <goals>
+                        <goal>process-asciidoc</goal>
+                    </goals>
+                    <configuration>
+                        <backend>docbook</backend>
+                        <doctype>book</doctype>
+                    </configuration>
+                </execution>-->
+            </executions>
+            <configuration>
+<!--                <sourceDirectory>./</sourceDirectory>
+                -->
+                <!--<outputDirectory>./asciidoc</outputDirectory>-->
+                <headerFooter>true</headerFooter>
 
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 </project>
