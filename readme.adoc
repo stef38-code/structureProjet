@@ -28,9 +28,9 @@ La logique que vous implémentez doit :
 
 
 .Liste des modules
-* Application : la partie des appels extérieurs
+* Application : la partie des services exposés
 * Business : La partie métier
-* Infrastructure : la partie de communication avec les infrastructures de l'entreprise
+* Infrastructure : la partie de communication avec des services consommés
 * Architecture : module qui servira uniquement à mettre en place les règles de contrôle du projet +
 [NOTE]
 Ces règles seront en partie contrôlées par la librairie https://www.archunit.org/userguide/html/000_Index.html[ArchUnit]
@@ -205,4 +205,9 @@ Comment mettre en place cette structure :
 * https://cucumber.io/docs/installation/java/[site officiel cucumber]
 * https://cucumber.io/docs/gherkin/languages/#gherkin-dialect-fr-content[Correspondance en francais]
 * https://isabelle-blasquez.developpez.com/tutoriels/java/cucumber-test-bdd/[tutorial cucumber test bdd]
+
+==== AsciiDoc
+* https://docs.asciidoctor.org/[doc]
+* https://docs.asciidoctor.org/maven-tools/latest/[maven-tools]
+* https://github.com/asciidoctor/asciidoctor-maven-examples[asciidoctor-maven-examples]
 
